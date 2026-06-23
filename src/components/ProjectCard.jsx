@@ -63,7 +63,7 @@ export default function ProjectCard({ project, index = 0 }) {
           {/* 日期手写感 */}
           <span className="doodle-note text-[0.68rem] opacity-70">{project.date}</span>
           <Link
-            to={`/project/${project.id}`}
+            to={`/projects/${project.id}`}
             className="btn-outline text-xs px-4 py-1.5"
           >
             查看详情 →

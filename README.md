@@ -68,17 +68,54 @@ Vercel 会自动在每次 push 后重新部署。
 
 ---
 
+## 页面路由
+
+| 路由 | 页面 | 说明 |
+|------|------|------|
+| `/` | 首页 Landing | 封面页，点击进入作品集 |
+| `/portfolio` | 作品集总览 | 所有作品卡片列表 |
+| `/projects/:id` | 作品详情 | 点击卡片自动进入，不在导航栏显示 |
+| `/contact` | 联系我 | 姓名、邮箱、电话、简历下载 |
+
+---
+
 ## 如何修改网站内容
+
+### 修改个人信息（姓名 / 邮箱 / 电话 / 简历路径）
+
+**只改一个文件：`src/data/profile.js`**
+
+```js
+const profile = {
+  name:   '赵泽阳',
+  email:  '2495606018@qq.com',
+  phone:  '17610579351',
+  resume: '/resume.pdf',
+  school: '中国农业大学',
+  year:   '2027届毕业生',
+}
+```
+
+Navbar 姓名、Footer 姓名学校、Contact 页所有联系信息均从此处读取，改一处全站生效。
+
+---
+
+### 替换简历 PDF
+
+1. 将简历文件命名为 `resume.pdf`，放到 `public/resume.pdf`
+2. 无需修改代码，Contact 页的下载按钮自动指向该文件
+
+---
 
 ### 新增作品
 
 **只改一个文件：`src/data/projects.js`**
 
-在 `projects` 数组末尾追加一个对象，结构如下（`detail.contentBlocks` 是图文交错模块，每项对应详情页一个左图右文/右图左文区块）：
+在 `projects` 数组末尾追加一个对象（`detail.contentBlocks` 是图文交错模块，每项对应详情页一个左图右文/右图左文区块）：
 
 ```js
 {
-  id: 'my-new-project',           // 唯一 ID，用于 URL /project/my-new-project
+  id: 'my-new-project',           // 唯一 ID，用于 URL /projects/my-new-project
   title: '我的新项目',
   summary: '一句话概述这个项目做了什么。',
   tags: ['Python', 'AI', '数据分析'],
@@ -87,17 +124,14 @@ Vercel 会自动在每次 push 后重新部署。
   detail: {
     background: '项目背景介绍，2-4 句。',
     approach:   '实现思路介绍，2-4 句。',
-
-    // 核心内容：图文交错展示，每项对应一个图文区块
-    // 奇数项（第1、3块）左图右文，偶数项（第2、4块）右图左文
     contentBlocks: [
       {
-        image:    '/images/my-project-01.jpg',  // 放 public/images/
+        image:    '/images/my-project-01.jpg',
         imageAlt: '功能模块截图',
         title:    '模块一标题',
         text:     '2-4 句说明这个模块做了什么、解决了什么问题。',
-        note:     '← 可选手写批注，留空则填 ""',
-        tags:     ['功能点', '技术'],           // 可选，留空则填 []
+        note:     '← 可选手写批注，留空填 ""',
+        tags:     ['功能点', '技术'],
       },
       {
         image:    '/images/my-project-02.jpg',
@@ -108,7 +142,6 @@ Vercel 会自动在每次 push 后重新部署。
         tags:     [],
       },
     ],
-
     highlights: [
       '亮点一：最有价值的特点。',
       '亮点二：技术突破或创新点。',
@@ -122,86 +155,44 @@ Vercel 会自动在每次 push 后重新部署。
 
 ---
 
+### 删除作品
+
+删除 `src/data/projects.js` 中对应的对象，页面自动减少。
+
+---
+
+### 新增 / 删除核心内容模块
+
+在对应作品的 `detail.contentBlocks` 数组中追加或删除对象即可。  
+模块编号和图文左右交错方向会自动重新计算。
+
+---
+
 ### 修改首页文字
 
-打开 `src/pages/Landing.jsx`，找到以下内容直接改：
+打开 `src/pages/Landing.jsx`，搜索以下关键词直接修改：
 
 | 内容 | 搜索关键词 |
 |------|-----------|
 | 副标题（姓名/学校/届别） | `赵泽阳　｜　中国农业大学` |
 | 一句话介绍 | `这是一个用于展示个人项目` |
 | 按钮文字 | `进入作品集` |
-| 角落小注 | `Portfolio · 2026` |
 
 ---
 
 ### 替换作品封面图
 
-1. 把图片文件放到 `public/images/`，例如 `public/images/my-cover.jpg`
-2. 打开 `src/data/projects.js`，找到对应作品，将 `cover` 改为：
-   ```js
-   cover: '/images/my-cover.jpg',
-   ```
-3. 推荐尺寸：宽 1200px，高 720px（5:3 比例），jpg/png/webp 均可
+1. 把图片放到 `public/images/`，例如 `public/images/my-cover.jpg`
+2. 打开 `src/data/projects.js`，将对应作品的 `cover` 改为 `/images/my-cover.jpg`
+3. 推荐尺寸：1200 × 720px（5:3 比例）
 
 ---
 
 ### 替换详情页图片（图文模块）
 
-详情页采用图文交错布局，每张图对应一个 `contentBlocks` 条目：
-
 1. 把图片放到 `public/images/`
-2. 打开 `src/data/projects.js`，找到对应作品的 `detail.contentBlocks`，更新 `image` 路径：
-   ```js
-   contentBlocks: [
-     { image: '/images/my-actual-screenshot-01.jpg', ... },
-     { image: '/images/my-actual-screenshot-02.jpg', ... },
-   ]
-   ```
-3. 同步修改 `title`（模块小标题）和 `text`（2-4 句说明）
-4. 可选：填写 `note`（手写批注）和 `tags`（标签）
-
-模块数量不限，可以只有 1 块，也可以有 4-5 块，页面会自动适应。
-
----
-
-### 替换简历 PDF
-
-1. 将简历文件命名为 `resume.pdf`，放到 `public/resume.pdf`
-2. 无需修改代码，`Contact` 页的下载链接自动指向该文件
-
----
-
-### 修改邮箱和 GitHub 链接
-
-打开 `src/pages/Contact.jsx`，文件顶部的 `contacts` 数组，直接替换：
-
-```js
-// 邮箱
-{ value: 'your@email.com', href: 'mailto:your@email.com', display: 'your@email.com' }
-
-// GitHub
-{ value: 'github.com/your-username', href: 'https://github.com/your-username', display: 'github.com/your-username' }
-```
-
----
-
-### 本地预览修改效果
-
-```bash
-npm run dev
-# 访问 http://localhost:5173
-# 保存文件后页面自动热更新，无需手动刷新
-```
-
----
-
-### 打包发布
-
-```bash
-npm run build
-# 生成 dist/ 目录，上传到 Vercel 或服务器即可
-```
+2. 打开 `src/data/projects.js`，找到对应作品的 `detail.contentBlocks`，更新 `image` 路径并修改 `title`、`text`
+3. 模块数量不限，1 块到 10 块均可正常渲染
 
 ---
 
@@ -211,29 +202,29 @@ npm run build
 portfolio-site/
 ├── public/
 │   ├── favicon.svg
-│   ├── resume.pdf              # 简历 PDF（替换这里）
+│   ├── resume.pdf              # 简历 PDF（放这里即可，Contact 自动引用）
 │   └── images/
 │       ├── placeholder-cover.svg
 │       ├── placeholder-detail.svg
-│       └── ...                 # 你的作品图片放这里
+│       └── ...                 # 作品图片放这里
 ├── src/
 │   ├── components/
 │   │   ├── DoodleTeacher.jsx   # Landing 页讲解小人
-│   │   ├── DoodleSignHolder.jsx # 作品页举牌小人
-│   │   ├── DoodleLounging.jsx  # 关于页躺平小人
+│   │   ├── DoodleSignHolder.jsx
+│   │   ├── DoodleLounging.jsx
 │   │   ├── Footer.jsx
 │   │   ├── Navbar.jsx
 │   │   └── ProjectCard.jsx
 │   ├── data/
-│   │   └── projects.js         # ★ 作品数据，最常改这里
+│   │   ├── profile.js          # ★ 个人信息（姓名/邮箱/电话/简历）
+│   │   └── projects.js         # ★ 作品数据
 │   ├── pages/
-│   │   ├── About.jsx
-│   │   ├── Contact.jsx         # ★ 邮箱/GitHub 改这里
-│   │   ├── Landing.jsx         # ★ 首页文字改这里
-│   │   ├── Portfolio.jsx
-│   │   └── ProjectDetail.jsx
+│   │   ├── Contact.jsx         # 联系页
+│   │   ├── Landing.jsx         # 首页
+│   │   ├── Portfolio.jsx       # 作品集总览
+│   │   └── ProjectDetail.jsx   # 作品详情（数据驱动，不需要修改）
 │   ├── App.jsx
-│   ├── index.css               # 全局样式/纸张质感
+│   ├── index.css
 │   └── main.jsx
 ├── .gitignore
 ├── index.html
@@ -249,9 +240,8 @@ portfolio-site/
 
 | 文件 | 用途 |
 |------|------|
-| `src/data/projects.js` | 新增/编辑作品内容 |
+| `src/data/projects.js` | 新增 / 编辑 / 删除作品 |
+| `src/data/profile.js` | 修改姓名、邮箱、电话、简历路径 |
 | `public/images/` | 放作品封面图和详情图 |
-| `public/resume.pdf` | 替换简历 |
-| `src/pages/Contact.jsx` | 改邮箱、GitHub 链接 |
-| `src/pages/Landing.jsx` | 改首页标题/介绍文字 |
-| `src/pages/About.jsx` | 改个人简介内容 |
+| `public/resume.pdf` | 替换简历（直接覆盖文件） |
+| `src/pages/Landing.jsx` | 改首页标题 / 介绍文字 |

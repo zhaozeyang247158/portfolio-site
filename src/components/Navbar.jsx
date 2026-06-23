@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import profile from '../data/profile'
 
 const links = [
   { to: '/portfolio', label: '作品集' },
-  { to: '/about', label: '关于我' },
-  { to: '/contact', label: '联系' },
+  { to: '/contact',   label: '联系'   },
 ]
 
 export default function Navbar() {
@@ -14,19 +14,19 @@ export default function Navbar() {
     <header
       className="sticky top-0 z-50 backdrop-blur-sm"
       style={{
-        background: 'rgba(245,240,232,0.92)',
-        borderBottom: '1px solid rgba(176,168,152,0.35)',
+        background: 'rgba(248,245,239,0.93)',
+        borderBottom: '1px solid rgba(176,168,152,0.30)',
       }}
     >
       <nav className="page-container flex items-center justify-between h-14">
 
-        {/* Logo — 手写感字体 */}
+        {/* Logo — 从 profile 读取姓名 */}
         <Link
           to="/"
           className="text-ink hover:text-ink-light transition-colors"
           style={{ fontFamily: "'Ma Shan Zheng', 'ZCOOL KuaiLe', serif", fontSize: '1.1rem', letterSpacing: '0.12em' }}
         >
-          赵泽阳
+          {profile.name}
         </Link>
 
         {/* Desktop links */}
@@ -49,17 +49,17 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile hamburger — 手绘三短线 */}
+        {/* Mobile hamburger */}
         <button
           className="md:hidden flex flex-col gap-[5px] p-1"
           onClick={() => setOpen(!open)}
           aria-label="菜单"
         >
-          <span className={`block h-px bg-ink transition-all duration-200 ${open ? 'w-5 translate-y-[6px] rotate-45' : 'w-5'}`}
+          <span className={`block bg-ink transition-all duration-200 ${open ? 'w-5 translate-y-[6px] rotate-45' : 'w-5'}`}
             style={{ height: '1.5px' }}/>
-          <span className={`block h-px bg-ink transition-opacity duration-200 ${open ? 'opacity-0 w-3' : 'w-4'}`}
+          <span className={`block bg-ink transition-opacity duration-200 ${open ? 'opacity-0 w-3' : 'w-4'}`}
             style={{ height: '1.5px' }}/>
-          <span className={`block h-px bg-ink transition-all duration-200 ${open ? 'w-5 -translate-y-[6px] -rotate-45' : 'w-5'}`}
+          <span className={`block bg-ink transition-all duration-200 ${open ? 'w-5 -translate-y-[6px] -rotate-45' : 'w-5'}`}
             style={{ height: '1.5px' }}/>
         </button>
       </nav>
@@ -68,7 +68,7 @@ export default function Navbar() {
       {open && (
         <div
           className="md:hidden"
-          style={{ borderTop: '1px dashed rgba(176,168,152,0.4)', background: '#F5F0E8' }}
+          style={{ borderTop: '1px dashed rgba(176,168,152,0.35)', background: '#F8F5EF' }}
         >
           <ul className="page-container py-5 flex flex-col gap-4">
             {links.map((l) => (

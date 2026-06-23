@@ -4,7 +4,6 @@ import Footer from './components/Footer'
 import Landing from './pages/Landing'
 import Portfolio from './pages/Portfolio'
 import ProjectDetail from './pages/ProjectDetail'
-import About from './pages/About'
 import Contact from './pages/Contact'
 
 export default function App() {
@@ -22,10 +21,9 @@ export default function App() {
               <Navbar />
               <main className="flex-1">
                 <Routes>
-                  <Route path="/portfolio" element={<Portfolio />} />
-                  <Route path="/project/:id" element={<ProjectDetail />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/portfolio"       element={<Portfolio />} />
+                  <Route path="/projects/:id"    element={<ProjectDetail />} />
+                  <Route path="/contact"         element={<Contact />} />
                 </Routes>
               </main>
               <Footer />
