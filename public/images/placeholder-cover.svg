@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" fill="none">
+  <rect width="600" height="360" fill="#EDE8DC"/>
+  <!-- 纸张横纹 -->
+  <line x1="0" y1="36" x2="600" y2="36" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="72" x2="600" y2="72" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="108" x2="600" y2="108" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="144" x2="600" y2="144" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="180" x2="600" y2="180" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="216" x2="600" y2="216" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="252" x2="600" y2="252" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="288" x2="600" y2="288" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="324" x2="600" y2="324" stroke="#C8C0B4" stroke-width="0.6"/>
+  <!-- 手绘外边框（略不规则） -->
+  <path d="M32 24 Q34 22 568 20 Q572 22 570 336 Q568 340 32 338 Q28 336 30 24Z"
+    stroke="#6B6560" stroke-width="1.4" stroke-dasharray="8 5" fill="none"/>
+  <!-- 山丘 doodle -->
+  <path d="M120 280 Q180 180 240 220 Q300 260 360 160 Q420 60 480 140 Q520 200 570 280"
+    stroke="#2C2C2C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 太阳 doodle -->
+  <circle cx="130" cy="100" r="30" stroke="#2C2C2C" stroke-width="1.8" fill="none"/>
+  <line x1="130" y1="62" x2="130" y2="52" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="130" y1="138" x2="130" y2="148" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="92" y1="100" x2="82" y2="100" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="168" y1="100" x2="178" y2="100" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="103" y1="73" x2="96" y2="66" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="157" y1="73" x2="164" y2="66" stroke="#2C2C2C" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 云朵 doodle -->
+  <path d="M350 90 Q358 78 372 82 Q378 68 396 72 Q410 68 416 80 Q428 76 430 90 Q430 100 420 102 L360 102 Q348 100 350 90Z"
+    stroke="#2C2C2C" stroke-width="1.6" fill="none"/>
+  <!-- 小树 -->
+  <line x1="500" y1="280" x2="500" y2="230" stroke="#2C2C2C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M480 260 Q500 220 520 260Z" stroke="#2C2C2C" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+  <path d="M476 244 Q500 200 524 244Z" stroke="#2C2C2C" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+  <!-- 占位标注 -->
+  <text x="300" y="330" text-anchor="middle"
+    font-family="'Ma Shan Zheng', Georgia, serif" font-size="13" fill="#A8A09A" letter-spacing="3">
+    封面图 · 待替换
+  </text>
+</svg>

@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── 纸张纹理背景 ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    /* 两层叠加：细颗粒噪点 + 轻微横纹，模拟纸张感 */
+    background-color: #F5F0E8;
+    background-image:
+      /* 纸张横纹 */
+      repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 27px,
+        rgba(180,170,158,0.10) 27px,
+        rgba(180,170,158,0.10) 28px
+      ),
+      /* 颗粒噪点 */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-ink;
+  }
+
+  /* 手写注释通用样式 */
+  .handnote {
+    font-family: 'Ma Shan Zheng', 'ZCOOL KuaiLe', cursive;
+    color: #6B6560;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ── 通用组件 ── */
+@layer components {
+  /* 标签：手绘感细边框 */
+  .tag {
+    @apply inline-block px-2 py-0.5 text-xs font-mono tracking-wider text-ink-light;
+    border: 1px solid #B0A898;
+    border-radius: 1px;
+    /* 轻微歪斜模拟手写贴标签感 */
+    transform: rotate(-0.3deg);
+  }
+  .tag:nth-child(even) { transform: rotate(0.4deg); }
+
+  /* 主按钮：手绘粗边框 */
+  .btn-primary {
+    @apply inline-block px-7 py-2.5 text-sm tracking-widest text-ink cursor-pointer
+           transition-all duration-200;
+    border: 1.5px solid #2C2C2C;
+    position: relative;
+    /* 伪元素做"手绘偏移阴影" */
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid #2C2C2C;
+    transform: translate(3px, 3px);
+    opacity: 0.25;
+    transition: transform 0.15s;
+  }
+  .btn-primary:hover {
+    @apply bg-ink text-paper;
+  }
+  .btn-primary:hover::after {
+    transform: translate(5px, 5px);
+    opacity: 0.15;
+  }
+
+  /* 次按钮 */
+  .btn-outline {
+    @apply inline-block px-5 py-2 text-sm tracking-wider text-ink-light cursor-pointer
+           transition-colors duration-200;
+    border: 1px solid #B0A898;
+  }
+  .btn-outline:hover {
+    @apply text-ink;
+    border-color: #2C2C2C;
+  }
+
+  .section-number {
+    @apply font-mono text-xs text-ink-faint tracking-widest mr-3;
+  }
+
+  /* 分隔线：虚线手绘感 */
+  .divider {
+    border: none;
+    border-top: 1.5px dashed #C8C0B4;
+    margin: 2rem 0;
+  }
+
+  .page-container {
+    @apply max-w-5xl mx-auto px-6 md:px-12;
+  }
+
+  /* 手绘卡片边框：四边轻微不规则 */
+  .card-doodle {
+    position: relative;
+    border: 1.5px solid #B0A898;
+  }
+  .card-doodle::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 1px solid #B0A898;
+    transform: translate(2px, 2px) rotate(0.15deg);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* 手写注释气泡 */
+  .doodle-note {
+    font-family: 'Ma Shan Zheng', 'ZCOOL KuaiLe', cursive;
+    font-size: 0.72rem;
+    color: #8B7355;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+
+  /* 带下划线的手写大标题 */
+  .title-handwrite {
+    font-family: 'Ma Shan Zheng', 'ZCOOL KuaiLe', serif;
+    letter-spacing: 0.12em;
+    position: relative;
+    display: inline-block;
+  }
+  .title-handwrite::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2C2C2C;
+    transform: scaleX(0.92) rotate(-0.3deg);
+    transform-origin: left;
+    opacity: 0.35;
+  }
+}
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C8C0B4; border-radius: 2px; }
