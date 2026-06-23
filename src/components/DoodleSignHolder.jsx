@@ -1,12 +1,13 @@
 /**
  * 作品总览页右上角举牌小人
- * 单手举牌（右手），自然站姿，左手自然垂下
- * viewBox 120×220，preserveAspectRatio 防变形
+ * 构图：小人站左侧，牌子在右侧，右手斜举牌杆
+ * 左人右牌，互不遮挡，站姿松弛
+ * viewBox 160×200，preserveAspectRatio 防变形
  */
 export default function DoodleSignHolder({ className = '', style = {} }) {
   return (
     <svg
-      viewBox="0 0 120 220"
+      viewBox="0 0 160 200"
       preserveAspectRatio="xMidYMid meet"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -14,72 +15,82 @@ export default function DoodleSignHolder({ className = '', style = {} }) {
       style={{ display: 'block', ...style }}
       aria-hidden="true"
     >
-      {/* ── 牌子（右手举起，略微倾斜） ── */}
-      <rect x="54" y="6" width="62" height="40" rx="3"
-        stroke="#2C2C2C" strokeWidth="1.6" fill="#EEE9DE"/>
-      {/* 牌子横纹 */}
-      <line x1="62" y1="20" x2="108" y2="20" stroke="#C0B8AE" strokeWidth="0.8"/>
-      <line x1="62" y1="30" x2="108" y2="30" stroke="#C0B8AE" strokeWidth="0.8"/>
+      {/* ══ 牌子（右侧，略微倾斜 2°）══ */}
+      <rect x="82" y="14" width="68" height="44" rx="3"
+        stroke="#2C2C2C" strokeWidth="1.5" fill="#EEE9DE"
+        transform="rotate(2 82 14)"/>
+      {/* 牌子内横纹 */}
+      <line x1="90" y1="30" x2="144" y2="31"
+        stroke="#C0B8AE" strokeWidth="0.8"
+        transform="rotate(2 82 14)"/>
+      <line x1="90" y1="41" x2="144" y2="42"
+        stroke="#C0B8AE" strokeWidth="0.8"
+        transform="rotate(2 82 14)"/>
       {/* 牌子文字 */}
-      <text x="85" y="18" textAnchor="middle"
+      <text x="116" y="30" textAnchor="middle"
         fontFamily="'Ma Shan Zheng','ZCOOL KuaiLe',cursive"
-        fontSize="9" fill="#2C2C2C" letterSpacing="1">作品</text>
-      <text x="85" y="29" textAnchor="middle"
+        fontSize="10" fill="#2C2C2C" letterSpacing="1"
+        transform="rotate(2 116 30)">作品</text>
+      <text x="116" y="42" textAnchor="middle"
         fontFamily="'Ma Shan Zheng','ZCOOL KuaiLe',cursive"
-        fontSize="9" fill="#2C2C2C" letterSpacing="1">在这里</text>
-      {/* 牌子左下角折角 */}
-      <path d="M54 40 L60 46 L54 46Z"
-        stroke="#2C2C2C" strokeWidth="0.8" fill="#D8D0C4" opacity="0.5"/>
-      {/* 牌子右侧向左箭头（指向页面内容） */}
-      <path d="M54 26 L44 26 L48 22 M44 26 L48 30"
-        stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
-
-      {/* ── 牌杆（右手握） ── */}
-      <line x1="72" y1="46" x2="72" y2="78"
-        stroke="#2C2C2C" strokeWidth="1.4" strokeLinecap="round"/>
-
-      {/* ── 头 ── */}
-      <path d="M46 96 Q48 80 62 78 Q76 76 80 90 Q84 104 70 108 Q56 110 48 100 Q44 96 46 96Z"
-        stroke="#2C2C2C" strokeWidth="1.8" fill="none"/>
-      {/* 头发几根 */}
-      <path d="M52 82 Q54 74 60 80" stroke="#2C2C2C" strokeWidth="1.4"
-        strokeLinecap="round" fill="none"/>
-      <path d="M62 78 Q66 70 72 78" stroke="#2C2C2C" strokeWidth="1.4"
-        strokeLinecap="round" fill="none"/>
-      {/* 眼睛 */}
-      <ellipse cx="58" cy="92" rx="2.5" ry="2.8" fill="#2C2C2C"/>
-      <ellipse cx="71" cy="91" rx="2.3" ry="2.5" fill="#2C2C2C"/>
-      <circle cx="59.2" cy="91" r="0.8" fill="#F8F5EF"/>
-      <circle cx="71.8" cy="90" r="0.7" fill="#F8F5EF"/>
-      {/* 嘴 — 得意 */}
-      <path d="M57 101 Q63 107 73 101"
-        stroke="#2C2C2C" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-
-      {/* ── 身体 ── */}
-      <line x1="64" y1="108" x2="64" y2="158"
-        stroke="#2C2C2C" strokeWidth="2.2" strokeLinecap="round"/>
-
-      {/* ── 右臂 — 高举牌杆，肘部自然弯曲 ── */}
-      <path d="M66 118 Q72 100 72 80"
-        stroke="#2C2C2C" strokeWidth="2" strokeLinecap="round" fill="none"/>
-
-      {/* ── 左臂 — 自然垂下，略外摆 ── */}
-      <path d="M62 118 Q50 130 46 148"
-        stroke="#2C2C2C" strokeWidth="2" strokeLinecap="round" fill="none"/>
-      {/* 左手 */}
-      <path d="M46 148 Q42 154 44 158 Q48 160 50 155"
+        fontSize="10" fill="#2C2C2C" letterSpacing="1"
+        transform="rotate(2 116 42)">在这里</text>
+      {/* 牌子左侧向左箭头，指向内容区 */}
+      <path d="M80 34 L68 34 L72 30 M68 34 L72 38"
         stroke="#2C2C2C" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
 
-      {/* ── 左腿 ── */}
-      <path d="M62 158 Q56 174 52 198"
+      {/* ══ 牌杆：从牌子底部到右手握点 ══ */}
+      {/* 杆子从牌子底部中心（约 x=114 y=58）向左下延伸到手握点（x=84 y=90） */}
+      <line x1="112" y1="58" x2="84" y2="92"
+        stroke="#2C2C2C" strokeWidth="1.5" strokeLinecap="round"/>
+
+      {/* ══ 头（中心 x=44, y=76，半径约 18）══ */}
+      {/* 略不规则，用 path 模拟手绘圆 */}
+      <path d="M28 74 Q30 56 44 54 Q58 52 62 68 Q66 82 54 88 Q42 94 30 86 Q24 80 28 74Z"
+        stroke="#2C2C2C" strokeWidth="1.8" fill="none"/>
+      {/* 头发 */}
+      <path d="M32 62 Q34 54 40 58" stroke="#2C2C2C" strokeWidth="1.4"
+        strokeLinecap="round" fill="none"/>
+      <path d="M42 54 Q46 46 52 54" stroke="#2C2C2C" strokeWidth="1.4"
+        strokeLinecap="round" fill="none"/>
+      {/* 眼睛（看向右边，即牌子方向） */}
+      <ellipse cx="40" cy="72" rx="2.8" ry="3" fill="#2C2C2C"/>
+      <ellipse cx="53" cy="71" rx="2.5" ry="2.8" fill="#2C2C2C"/>
+      <circle cx="41.5" cy="71" r="0.9" fill="#EEE9DE"/>
+      <circle cx="54.2" cy="70" r="0.8" fill="#EEE9DE"/>
+      {/* 嘴——轻松微笑 */}
+      <path d="M38 82 Q44 88 54 83"
+        stroke="#2C2C2C" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+
+      {/* ══ 身体（中心 x=44）══ */}
+      <line x1="44" y1="88" x2="44" y2="142"
+        stroke="#2C2C2C" strokeWidth="2.2" strokeLinecap="round"/>
+
+      {/* ══ 右臂：从肩部斜向右上，握住牌杆 ══ */}
+      {/* 肩点约 (48, 102)，肘部弯向右上 (66, 88)，手握杆底 (84, 92) */}
+      <path d="M48 102 Q66 88 84 92"
+        stroke="#2C2C2C" strokeWidth="2" strokeLinecap="round" fill="none"/>
+
+      {/* ══ 左臂：自然垂下，略往左外摆 ══ */}
+      {/* 肩点约 (40, 102)，自然弯向 (28, 118)，手到 (24, 132) */}
+      <path d="M40 102 Q28 118 24 132"
+        stroke="#2C2C2C" strokeWidth="2" strokeLinecap="round" fill="none"/>
+      {/* 左手（简单小勾） */}
+      <path d="M24 132 Q20 138 22 142 Q26 144 28 140"
+        stroke="#2C2C2C" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
+
+      {/* ══ 左腿：重心腿，略往前 ══ */}
+      <path d="M42 142 Q36 160 32 184"
         stroke="#2C2C2C" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
-      <path d="M52 198 Q44 202 38 200 Q42 196 52 198Z"
+      {/* 左脚 */}
+      <path d="M32 184 Q24 188 18 186 Q22 182 32 184Z"
         stroke="#2C2C2C" strokeWidth="1.4" fill="none" strokeLinejoin="round"/>
 
-      {/* ── 右腿 — 重心脚，微叉开 ── */}
-      <path d="M66 158 Q72 174 76 198"
+      {/* ══ 右腿：轻松后撤半步 ══ */}
+      <path d="M46 142 Q52 160 56 184"
         stroke="#2C2C2C" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
-      <path d="M76 198 Q84 202 90 200 Q86 196 76 198Z"
+      {/* 右脚 */}
+      <path d="M56 184 Q64 188 70 186 Q66 182 56 184Z"
         stroke="#2C2C2C" strokeWidth="1.4" fill="none" strokeLinejoin="round"/>
     </svg>
   )
