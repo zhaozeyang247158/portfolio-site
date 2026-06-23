@@ -1,5 +1,5 @@
 /**
- * 关于我页：躺平小人
+ * 躺平小人 Doodle 组件
  * viewBox 220×115，旁注文字放在身体下方不重叠
  * preserveAspectRatio="xMidYMid meet" 防止拉伸
  */
