@@ -44,7 +44,7 @@ export default function ProjectDetail() {
       </h1>
 
       {/* 手绘下划线 */}
-      <svg viewBox="0 0 300 10" className="w-64 mb-4 opacity-30" fill="none">
+      <svg viewBox="0 0 300 10" className="w-64 mb-5 opacity-25" fill="none">
         <path d="M2 5 Q75 2 150 5 Q225 8 298 5"
           stroke="#2C2C2C" strokeWidth="1.8" strokeLinecap="round"/>
       </svg>
@@ -56,89 +56,139 @@ export default function ProjectDetail() {
       <p className="doodle-note mb-10">{project.date}</p>
 
       {/* 虚线分隔 */}
-      <div className="divider"/>
+      <div className="divider" />
 
       {/* ── 封面图 ── */}
-      <div className="mb-12 overflow-hidden card-doodle">
-        <img src={project.cover} alt={project.title} className="w-full object-cover"/>
+      <div className="mb-14 overflow-hidden card-doodle">
+        <img src={project.cover} alt={project.title} className="w-full object-cover" />
       </div>
 
-      {/* ── 各节内容 ── */}
+      {/* ── 01 项目背景 ── */}
       <Section number="01" title="项目背景">
         <p className="text-sm text-ink-light leading-[2]">{detail.background}</p>
       </Section>
 
+      {/* ── 02 创作 / 实现思路 ── */}
       <Section number="02" title="创作 / 实现思路">
         <p className="text-sm text-ink-light leading-[2]">{detail.approach}</p>
       </Section>
 
-      <Section number="03" title="核心内容展示">
-        {Array.isArray(detail.core) ? (
-          <ul className="space-y-4">
-            {detail.core.map((item, i) => (
-              <li key={i} className="flex gap-4 text-sm text-ink-light leading-loose">
-                {/* 手绘编号圆圈 */}
-                <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full border border-ink-faint/60
-                  flex items-center justify-center font-mono text-[10px] text-ink-faint">
-                  {i + 1}
-                </span>
+      {/* ── 03 核心内容展示：图文交错 ── */}
+      {detail.contentBlocks && detail.contentBlocks.length > 0 && (
+        <Section number="03" title="核心内容展示">
+          <div className="space-y-14">
+            {detail.contentBlocks.map((block, i) => (
+              <ContentBlock key={i} block={block} index={i} />
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {/* ── 04 项目亮点 ── */}
+      {detail.highlights && detail.highlights.length > 0 && (
+        <Section number="04" title="项目亮点 / 我的思考">
+          <ul className="space-y-3 mt-1">
+            {detail.highlights.map((item, i) => (
+              <li key={i} className="flex gap-3 text-sm text-ink-light leading-loose">
+                <span className="shrink-0 mt-1 text-ink-faint font-mono text-xs">▸</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
-        ) : (
-          <p className="text-sm text-ink-light leading-[2]">{detail.core}</p>
-        )}
-      </Section>
+        </Section>
+      )}
 
-      <Section number="04" title="图片展示区">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {detail.images.map((src, i) => (
-            <div key={i} className="overflow-hidden card-doodle">
-              <img src={src} alt={`${project.title} 图片 ${i + 1}`} className="w-full object-cover"/>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section number="05" title="项目亮点">
-        <ul className="space-y-3">
-          {detail.highlights.map((item, i) => (
-            <li key={i} className="flex gap-3 text-sm text-ink-light leading-loose">
-              {/* 手绘箭头符号 */}
-              <span className="shrink-0 mt-1 text-ink-faint font-mono text-xs">▸</span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section number="06" title="总结与收获">
+      {/* ── 05 总结与收获 ── */}
+      <Section number="05" title="总结与收获">
         <p className="text-sm text-ink-light leading-[2]">{detail.conclusion}</p>
-        {/* 手写结尾注释 */}
-        <p className="doodle-note mt-4 opacity-60">— 完 —</p>
+        <p className="doodle-note mt-5 opacity-55">— 完 —</p>
       </Section>
 
-      <div className="divider"/>
+      <div className="divider" />
 
       {/* ── 返回按钮 ── */}
       <div className="mt-10 flex items-center gap-6">
         <button onClick={() => navigate('/portfolio')} className="btn-outline">
           ← 返回作品集
         </button>
-        <span className="doodle-note opacity-50">还有更多作品等你探索</span>
+        <span className="doodle-note opacity-45">还有更多作品等你探索</span>
       </div>
     </article>
   )
 }
 
+// ── 图文交错模块 ──
+// 奇数（index 0,2,4…）：左图右文；偶数（index 1,3…）：右图左文
+// 移动端统一上下排列
+function ContentBlock({ block, index }) {
+  const isEven = index % 2 === 1  // index=1,3… → 图在右
+
+  return (
+    <div
+      className={`flex flex-col gap-6 md:gap-8 ${
+        isEven ? 'md:flex-row-reverse' : 'md:flex-row'
+      } items-start`}
+    >
+      {/* 图片侧 */}
+      <div className="w-full md:w-[48%] shrink-0">
+        <div className="card-doodle overflow-hidden">
+          <img
+            src={block.image}
+            alt={block.imageAlt || block.title}
+            className="w-full object-cover"
+          />
+        </div>
+        {/* 图片下方手写注释（可选） */}
+        {block.note && (
+          <p className="doodle-note mt-2 ml-1 opacity-55">{block.note}</p>
+        )}
+      </div>
+
+      {/* 文字侧 */}
+      <div className="flex-1 flex flex-col gap-3 pt-1">
+        {/* 模块标签 */}
+        {block.tags && block.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {block.tags.map((t) => <span key={t} className="tag">{t}</span>)}
+          </div>
+        )}
+
+        {/* 模块序号 + 小标题 */}
+        <h3 className="flex items-end gap-2">
+          <span className="font-mono text-2xl text-ink-faint/20 leading-none select-none">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span
+            className="text-sm text-ink tracking-wider pb-0.5 border-b border-dashed"
+            style={{
+              fontFamily: "'Ma Shan Zheng', 'ZCOOL KuaiLe', serif",
+              borderColor: '#D0C8BE',
+            }}
+          >
+            {block.title}
+          </span>
+        </h3>
+
+        {/* 说明文字 */}
+        <p className="text-sm text-ink-light leading-[2]">{block.text}</p>
+
+        {/* 手绘指示线 */}
+        <svg viewBox="0 0 80 6" className="w-16 mt-1 opacity-20" fill="none">
+          <path d="M0 3 Q20 1 40 3 Q60 5 80 3"
+            stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round"/>
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+// ── 节标题组件 ──
 function Section({ number, title, children }) {
   return (
     <section className="mb-14">
-      {/* 节标题：手绘感数字 + 下划线 */}
-      <h2 className="flex items-end gap-2 mb-6">
+      <h2 className="flex items-end gap-2 mb-7">
         <span
-          className="text-3xl text-ink-faint/30 font-mono leading-none select-none"
+          className="text-3xl text-ink-faint/20 font-mono leading-none select-none"
           style={{ letterSpacing: '-0.02em' }}
         >
           {number}

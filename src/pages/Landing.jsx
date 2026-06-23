@@ -9,16 +9,16 @@ export default function Landing() {
       className="relative min-h-screen flex flex-col items-center justify-center cursor-pointer select-none overflow-hidden"
       onClick={() => navigate('/portfolio')}
     >
-      {/* ── 纸张横线背景（额外加密，比 body 更明显） ── */}
+      {/* ── 纸张横线背景（比 body 略明显，但不像作业本） ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{
-          backgroundImage: 'repeating-linear-gradient(180deg, transparent, transparent 35px, rgba(160,150,140,0.12) 35px, rgba(160,150,140,0.12) 36px)',
+          backgroundImage: 'repeating-linear-gradient(180deg, transparent, transparent 35px, rgba(150,142,132,0.07) 35px, rgba(150,142,132,0.07) 36px)',
         }}
       />
 
-      {/* ── 左侧红色竖线（笔记本装订线感觉） ── */}
+      {/* ── 左侧装订线（极淡，隐约） ── */}
       <div className="absolute top-0 bottom-0 left-[72px] md:left-[100px] w-px
-        bg-red-300/25 pointer-events-none" aria-hidden="true"/>
+        bg-red-300/10 pointer-events-none" aria-hidden="true"/>
 
       {/* ── 四角手写小注释 ── */}
       <div className="absolute top-7 left-8 md:left-14 pointer-events-none">

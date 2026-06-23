@@ -7,10 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#F5F0E8',
-        'paper-dark': '#EDE8DC',
-        ink: '#2C2C2C',
-        'ink-light': '#6B6560',
+        // 背景提亮到更干净的暖白，减少米灰感
+        paper: '#F8F5EF',
+        'paper-dark': '#EEE9DE',
+        // 正文加深，提高阅读性
+        ink: '#252525',
+        'ink-light': '#5C5650',
         'ink-faint': '#A8A09A',
         accent: '#8B7355',
       },

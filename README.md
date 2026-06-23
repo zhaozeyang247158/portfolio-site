@@ -74,7 +74,7 @@ Vercel 会自动在每次 push 后重新部署。
 
 **只改一个文件：`src/data/projects.js`**
 
-在 `projects` 数组末尾追加一个对象：
+在 `projects` 数组末尾追加一个对象，结构如下（`detail.contentBlocks` 是图文交错模块，每项对应详情页一个左图右文/右图左文区块）：
 
 ```js
 {
@@ -82,29 +82,43 @@ Vercel 会自动在每次 push 后重新部署。
   title: '我的新项目',
   summary: '一句话概述这个项目做了什么。',
   tags: ['Python', 'AI', '数据分析'],
-  cover: '/images/my-project-cover.jpg',
+  cover: '/images/my-project-cover.jpg',  // 封面图放 public/images/
   date: '2026-06',
   detail: {
-    background: '项目背景介绍...',
-    approach: '实现思路...',
-    core: [
-      '核心内容第一点。',
-      '核心内容第二点。',
+    background: '项目背景介绍，2-4 句。',
+    approach:   '实现思路介绍，2-4 句。',
+
+    // 核心内容：图文交错展示，每项对应一个图文区块
+    // 奇数项（第1、3块）左图右文，偶数项（第2、4块）右图左文
+    contentBlocks: [
+      {
+        image:    '/images/my-project-01.jpg',  // 放 public/images/
+        imageAlt: '功能模块截图',
+        title:    '模块一标题',
+        text:     '2-4 句说明这个模块做了什么、解决了什么问题。',
+        note:     '← 可选手写批注，留空则填 ""',
+        tags:     ['功能点', '技术'],           // 可选，留空则填 []
+      },
+      {
+        image:    '/images/my-project-02.jpg',
+        imageAlt: '数据结果示意图',
+        title:    '模块二标题',
+        text:     '继续说明第二个核心模块。',
+        note:     '',
+        tags:     [],
+      },
     ],
-    images: [
-      '/images/my-project-01.jpg',
-      '/images/my-project-02.jpg',
-    ],
+
     highlights: [
-      '亮点一。',
-      '亮点二。',
+      '亮点一：最有价值的特点。',
+      '亮点二：技术突破或创新点。',
     ],
-    conclusion: '总结与收获...',
+    conclusion: '总结与收获，2-4 句。',
   },
 },
 ```
 
-保存后刷新页面，作品自动出现在列表，详情页路由自动生成，无需改其他文件。
+保存后刷新页面，作品自动出现在列表，详情页路由自动生成，**无需改任何页面文件**。
 
 ---
 
@@ -132,16 +146,22 @@ Vercel 会自动在每次 push 后重新部署。
 
 ---
 
-### 替换详情页图片
+### 替换详情页图片（图文模块）
+
+详情页采用图文交错布局，每张图对应一个 `contentBlocks` 条目：
 
 1. 把图片放到 `public/images/`
-2. 打开 `src/data/projects.js`，找到对应作品的 `detail.images` 数组，替换路径：
+2. 打开 `src/data/projects.js`，找到对应作品的 `detail.contentBlocks`，更新 `image` 路径：
    ```js
-   images: [
-     '/images/my-detail-01.jpg',
-     '/images/my-detail-02.jpg',
-   ],
+   contentBlocks: [
+     { image: '/images/my-actual-screenshot-01.jpg', ... },
+     { image: '/images/my-actual-screenshot-02.jpg', ... },
+   ]
    ```
+3. 同步修改 `title`（模块小标题）和 `text`（2-4 句说明）
+4. 可选：填写 `note`（手写批注）和 `tags`（标签）
+
+模块数量不限，可以只有 1 块，也可以有 4-5 块，页面会自动适应。
 
 ---
 

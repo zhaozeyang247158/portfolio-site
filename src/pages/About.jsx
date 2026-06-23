@@ -28,9 +28,12 @@ export default function About() {
         </svg>
       </header>
 
-      {/* ── 躺平小人（手绘幽默感） ── */}
-      <div className="mb-10 -ml-2">
-        <DoodleLounging className="w-56 md:w-72 opacity-80"/>
+      {/* ── 躺平小人（手绘幽默感）── 固定尺寸容器，防止 flex 拉伸 ── */}
+      <div className="mb-10" style={{ width: '260px', height: 'auto' }}>
+        <DoodleLounging
+          className="opacity-80"
+          style={{ width: '260px', height: 'auto', display: 'block' }}
+        />
       </div>
 
       {/* ── 基本信息卡片 ── */}

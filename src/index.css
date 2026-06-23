@@ -10,19 +10,17 @@
 
   body {
     @apply bg-paper text-ink font-sans;
-    /* 两层叠加：细颗粒噪点 + 轻微横纹，模拟纸张感 */
-    background-color: #F5F0E8;
+    /* 背景：提亮到 #F8F5EF，横纹对比度从 0.10 降到 0.065，不像作业本 */
+    background-color: #F8F5EF;
     background-image:
-      /* 纸张横纹 */
       repeating-linear-gradient(
         180deg,
         transparent,
-        transparent 27px,
-        rgba(180,170,158,0.10) 27px,
-        rgba(180,170,158,0.10) 28px
+        transparent 33px,
+        rgba(160,152,142,0.065) 33px,
+        rgba(160,152,142,0.065) 34px
       ),
-      /* 颗粒噪点 */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   }
 
   ::selection {
@@ -94,7 +92,7 @@
   /* 分隔线：虚线手绘感 */
   .divider {
     border: none;
-    border-top: 1.5px dashed #C8C0B4;
+    border-top: 1.5px dashed #D0C8BE;
     margin: 2rem 0;
   }
 
@@ -105,15 +103,15 @@
   /* 手绘卡片边框：四边轻微不规则 */
   .card-doodle {
     position: relative;
-    border: 1.5px solid #B0A898;
+    border: 1.5px solid #C0B8AE;
   }
   .card-doodle::before {
     content: '';
     position: absolute;
     inset: -1px;
-    border: 1px solid #B0A898;
+    border: 1px solid #C0B8AE;
     transform: translate(2px, 2px) rotate(0.15deg);
-    opacity: 0.4;
+    opacity: 0.35;
     pointer-events: none;
   }
 
