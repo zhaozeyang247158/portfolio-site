@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import projects from '../data/projects'
 
+// ── 主页面 ───────────────────────────────────────────────────
 export default function ProjectDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -9,6 +10,7 @@ export default function ProjectDetail() {
 
   useEffect(() => { window.scrollTo(0, 0) }, [id])
 
+  // 作品不存在
   if (!project) {
     return (
       <div className="page-container py-24 text-center">
@@ -20,6 +22,17 @@ export default function ProjectDetail() {
 
   const { detail } = project
 
+  // 动态计算节编号：背景和思路固定是 01 02，
+  // 后续各节根据是否有内容决定是否渲染，编号跟着变
+  let sectionIndex = 2  // 已用 01 02
+  const nextNum = () => {
+    sectionIndex += 1
+    return String(sectionIndex).padStart(2, '0')
+  }
+
+  const hasBlocks     = Array.isArray(detail.contentBlocks) && detail.contentBlocks.length > 0
+  const hasHighlights = Array.isArray(detail.highlights) && detail.highlights.length > 0
+
   return (
     <article className="page-container py-16 md:py-24 max-w-3xl">
 
@@ -30,10 +43,12 @@ export default function ProjectDetail() {
         <span className="text-ink-light">{project.title}</span>
       </nav>
 
-      {/* ── 标签 ── */}
-      <div className="flex flex-wrap gap-2 mb-5">
-        {project.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
-      </div>
+      {/* ── 标签（动态渲染，0 个标签不报错） ── */}
+      {project.tags && project.tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
+        </div>
+      )}
 
       {/* ── 主标题 ── */}
       <h1
@@ -43,7 +58,6 @@ export default function ProjectDetail() {
         {project.title}
       </h1>
 
-      {/* 手绘下划线 */}
       <svg viewBox="0 0 300 10" className="w-64 mb-5 opacity-25" fill="none">
         <path d="M2 5 Q75 2 150 5 Q225 8 298 5"
           stroke="#2C2C2C" strokeWidth="1.8" strokeLinecap="round"/>
@@ -53,40 +67,61 @@ export default function ProjectDetail() {
       <p className="text-base text-ink-light leading-loose mb-2">{project.summary}</p>
 
       {/* ── 日期 ── */}
-      <p className="doodle-note mb-10">{project.date}</p>
+      {project.date && <p className="doodle-note mb-10">{project.date}</p>}
 
-      {/* 虚线分隔 */}
       <div className="divider" />
 
       {/* ── 封面图 ── */}
-      <div className="mb-14 overflow-hidden card-doodle">
-        <img src={project.cover} alt={project.title} className="w-full object-cover" />
-      </div>
+      {project.cover && (
+        <div className="mb-14 overflow-hidden card-doodle">
+          <img src={project.cover} alt={project.title} className="w-full object-cover" />
+        </div>
+      )}
 
       {/* ── 01 项目背景 ── */}
       <Section number="01" title="项目背景">
-        <p className="text-sm text-ink-light leading-[2]">{detail.background}</p>
+        <p className="text-sm text-ink-light leading-[2]">
+          {detail.background || '项目背景待补充。'}
+        </p>
       </Section>
 
       {/* ── 02 创作 / 实现思路 ── */}
       <Section number="02" title="创作 / 实现思路">
-        <p className="text-sm text-ink-light leading-[2]">{detail.approach}</p>
+        <p className="text-sm text-ink-light leading-[2]">
+          {detail.approach || '实现思路待补充。'}
+        </p>
       </Section>
 
-      {/* ── 03 核心内容展示：图文交错 ── */}
-      {detail.contentBlocks && detail.contentBlocks.length > 0 && (
-        <Section number="03" title="核心内容展示">
+      {/* ── 03 核心内容展示（有则渲染，无则显示提示）── */}
+      <Section number={nextNum()} title="核心内容展示">
+        {hasBlocks ? (
+          // contentBlocks 有几项就渲染几项，数量完全由数据驱动
           <div className="space-y-14">
             {detail.contentBlocks.map((block, i) => (
               <ContentBlock key={i} block={block} index={i} />
             ))}
           </div>
-        </Section>
-      )}
+        ) : (
+          // 0 个 contentBlocks 时的空状态，不报错
+          <div className="flex items-center gap-3 py-6">
+            <svg viewBox="0 0 48 48" fill="none" className="w-8 shrink-0 opacity-20" aria-hidden="true">
+              <circle cx="24" cy="24" r="10" stroke="#2C2C2C" strokeWidth="1.4" fill="none"/>
+              <line x1="24" y1="6"  x2="24" y2="2"  stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round"/>
+              <line x1="24" y1="42" x2="24" y2="46" stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round"/>
+              <line x1="6"  y1="24" x2="2"  y2="24" stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round"/>
+              <line x1="42" y1="24" x2="46" y2="24" stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round"/>
+            </svg>
+            <div>
+              <p className="text-sm text-ink-faint tracking-wider">核心内容待补充。</p>
+              <p className="doodle-note mt-1 opacity-50">// 后续替换为真实截图和说明</p>
+            </div>
+          </div>
+        )}
+      </Section>
 
-      {/* ── 04 项目亮点 ── */}
-      {detail.highlights && detail.highlights.length > 0 && (
-        <Section number="04" title="项目亮点 / 我的思考">
+      {/* ── 04 项目亮点（有则渲染，无则跳过）── */}
+      {hasHighlights && (
+        <Section number={nextNum()} title="项目亮点 / 我的思考">
           <ul className="space-y-3 mt-1">
             {detail.highlights.map((item, i) => (
               <li key={i} className="flex gap-3 text-sm text-ink-light leading-loose">
@@ -98,9 +133,11 @@ export default function ProjectDetail() {
         </Section>
       )}
 
-      {/* ── 05 总结与收获 ── */}
-      <Section number="05" title="总结与收获">
-        <p className="text-sm text-ink-light leading-[2]">{detail.conclusion}</p>
+      {/* ── 总结与收获（始终渲染，无内容显示占位）── */}
+      <Section number={nextNum()} title="总结与收获">
+        <p className="text-sm text-ink-light leading-[2]">
+          {detail.conclusion || '总结与收获待补充。'}
+        </p>
         <p className="doodle-note mt-5 opacity-55">— 完 —</p>
       </Section>
 
@@ -117,28 +154,28 @@ export default function ProjectDetail() {
   )
 }
 
-// ── 图文交错模块 ──
-// 奇数（index 0,2,4…）：左图右文；偶数（index 1,3…）：右图左文
-// 移动端统一上下排列
+// ── 图文交错模块 ─────────────────────────────────────────────
+// index 决定图文左右：偶数(0,2,4…) 左图右文，奇数(1,3,5…) 右图左文
+// 模块编号 = index+1，自动格式化为 01 02 03…
+// 数据全部来自 contentBlocks[i]，不写死任何内容
 function ContentBlock({ block, index }) {
-  const isEven = index % 2 === 1  // index=1,3… → 图在右
+  const isReversed = index % 2 === 1
 
   return (
     <div
-      className={`flex flex-col gap-6 md:gap-8 ${
-        isEven ? 'md:flex-row-reverse' : 'md:flex-row'
-      } items-start`}
+      className={`flex flex-col gap-6 md:gap-8 items-start ${
+        isReversed ? 'md:flex-row-reverse' : 'md:flex-row'
+      }`}
     >
       {/* 图片侧 */}
       <div className="w-full md:w-[48%] shrink-0">
         <div className="card-doodle overflow-hidden">
           <img
             src={block.image}
-            alt={block.imageAlt || block.title}
+            alt={block.imageAlt || block.title || `模块 ${index + 1}`}
             className="w-full object-cover"
           />
         </div>
-        {/* 图片下方手写注释（可选） */}
         {block.note && (
           <p className="doodle-note mt-2 ml-1 opacity-55">{block.note}</p>
         )}
@@ -146,33 +183,32 @@ function ContentBlock({ block, index }) {
 
       {/* 文字侧 */}
       <div className="flex-1 flex flex-col gap-3 pt-1">
-        {/* 模块标签 */}
+        {/* 可选标签 */}
         {block.tags && block.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {block.tags.map((t) => <span key={t} className="tag">{t}</span>)}
           </div>
         )}
 
-        {/* 模块序号 + 小标题 */}
+        {/* 自动编号 + 小标题（来自数据，不写死） */}
         <h3 className="flex items-end gap-2">
           <span className="font-mono text-2xl text-ink-faint/20 leading-none select-none">
             {String(index + 1).padStart(2, '0')}
           </span>
           <span
             className="text-sm text-ink tracking-wider pb-0.5 border-b border-dashed"
-            style={{
-              fontFamily: "'Ma Shan Zheng', 'ZCOOL KuaiLe', serif",
-              borderColor: '#D0C8BE',
-            }}
+            style={{ fontFamily: "'Ma Shan Zheng', 'ZCOOL KuaiLe', serif", borderColor: '#D0C8BE' }}
           >
-            {block.title}
+            {block.title || `模块 ${index + 1}`}
           </span>
         </h3>
 
         {/* 说明文字 */}
-        <p className="text-sm text-ink-light leading-[2]">{block.text}</p>
+        <p className="text-sm text-ink-light leading-[2]">
+          {block.text || '说明文字待补充。'}
+        </p>
 
-        {/* 手绘指示线 */}
+        {/* 装饰线 */}
         <svg viewBox="0 0 80 6" className="w-16 mt-1 opacity-20" fill="none">
           <path d="M0 3 Q20 1 40 3 Q60 5 80 3"
             stroke="#2C2C2C" strokeWidth="1.2" strokeLinecap="round"/>
@@ -182,7 +218,7 @@ function ContentBlock({ block, index }) {
   )
 }
 
-// ── 节标题组件 ──
+// ── 节标题 ───────────────────────────────────────────────────
 function Section({ number, title, children }) {
   return (
     <section className="mb-14">

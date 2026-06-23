@@ -2,7 +2,7 @@ import projects from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
 import DoodleSignHolder from '../components/DoodleSignHolder'
 
-// 极简 Doodle 装饰：小太阳
+// ── 内联 Doodle 装饰组件 ──────────────────────────────────────
 function DoodleSun({ className = '' }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
@@ -19,7 +19,6 @@ function DoodleSun({ className = '' }) {
   )
 }
 
-// 极简 Doodle 装饰：小云朵
 function DoodleCloud({ className = '' }) {
   return (
     <svg viewBox="0 0 72 36" fill="none" className={className} aria-hidden="true">
@@ -29,7 +28,6 @@ function DoodleCloud({ className = '' }) {
   )
 }
 
-// 极简 Doodle 装饰：虚线箭头
 function DoodleArrow({ className = '' }) {
   return (
     <svg viewBox="0 0 50 20" fill="none" className={className} aria-hidden="true">
@@ -41,14 +39,41 @@ function DoodleArrow({ className = '' }) {
   )
 }
 
+// ── 空状态：projects 为空时显示 ──────────────────────────────
+function EmptyState() {
+  return (
+    <div className="py-24 flex flex-col items-center gap-6 text-center">
+      <DoodleSun className="w-10 opacity-20" />
+      <p
+        className="text-xl text-ink-faint"
+        style={{ fontFamily: "'Ma Shan Zheng', 'ZCOOL KuaiLe', serif", letterSpacing: '0.1em' }}
+      >
+        作品还在路上
+      </p>
+      <p className="text-sm text-ink-faint tracking-wider">稍后补充，敬请期待。</p>
+      <span className="doodle-note opacity-50">— 正在整理中 —</span>
+    </div>
+  )
+}
+
+// ── 根据作品数量决定网格列数 ─────────────────────────────────
+// 1件：居中单列（最宽 md）；2件：两列；3件以上：最多三列
+function gridClass(count) {
+  if (count === 1) return 'grid-cols-1 max-w-md mx-auto'
+  if (count === 2) return 'grid-cols-1 md:grid-cols-2'
+  return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+}
+
+// ── 主组件 ───────────────────────────────────────────────────
 export default function Portfolio() {
+  const count = projects.length
+
   return (
     <div className="page-container py-16 md:py-24">
 
-      {/* ── 页头区域 ── */}
+      {/* ── 页头 ── */}
       <header className="mb-16 relative">
-
-        {/* 右侧举牌小人 — 固定尺寸防变形 */}
+        {/* 右侧举牌小人（固定尺寸防变形） */}
         <div
           className="absolute right-0 top-0 pointer-events-none hidden md:block"
           style={{ width: '112px', height: 'auto' }}
@@ -59,7 +84,7 @@ export default function Portfolio() {
           />
         </div>
 
-        {/* 左上角小太阳 — 作品列表入口装饰 */}
+        {/* 右下角小太阳 */}
         <div className="absolute right-0 bottom-0 pointer-events-none hidden md:block">
           <DoodleSun className="w-7 opacity-20" />
         </div>
@@ -68,7 +93,6 @@ export default function Portfolio() {
           No.002 · Works
         </p>
 
-        {/* 手写感大标题 */}
         <h1
           className="text-4xl md:text-5xl text-ink mb-2 leading-tight"
           style={{ fontFamily: "'Ma Shan Zheng', 'ZCOOL KuaiLe', serif", letterSpacing: '0.12em' }}
@@ -76,7 +100,6 @@ export default function Portfolio() {
           作品集
         </h1>
 
-        {/* 标题下手绘下划线 */}
         <svg viewBox="0 0 160 10" className="w-36 mb-5 opacity-25" fill="none">
           <path d="M2 5 Q40 2 80 5 Q120 8 158 5"
             stroke="#2C2C2C" strokeWidth="1.6" strokeLinecap="round"/>
@@ -86,36 +109,36 @@ export default function Portfolio() {
           这里将展示我的项目作品、AI 编程实践与阶段性成果。
         </p>
 
-        {/* 手写旁注 + 虚线箭头 */}
         <div className="mt-3 flex items-center gap-2">
           <DoodleArrow className="w-10 opacity-30" />
           <span className="doodle-note">持续更新中，请保持关注</span>
         </div>
       </header>
 
-      {/* ── 作品计数行 ── */}
+      {/* ── 作品计数行（自动跟随 projects.length）── */}
       <div className="flex items-center gap-4 mb-12">
         <span className="font-mono text-xs text-ink-faint tracking-widest">
-          共 {projects.length} 件作品
+          {count === 0 ? '暂无作品' : `共 ${count} 件作品`}
         </span>
-        <span className="flex-1 border-t border-dashed" style={{ borderColor: '#D0C8BE' }}/>
-        {/* 小云朵装饰，放在计数行右端 */}
+        <span className="flex-1 border-t border-dashed" style={{ borderColor: '#D0C8BE' }} />
         <DoodleCloud className="w-12 opacity-15" />
       </div>
 
-      {/* ── 卡片网格 ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
-        ))}
-      </div>
+      {/* ── 内容区 ── */}
+      {count === 0 ? (
+        <EmptyState />
+      ) : (
+        <div className={`grid gap-8 ${gridClass(count)}`}>
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+      )}
 
-      {/* ── 底部区域：小太阳 + 手写注释 ── */}
+      {/* ── 底部 ── */}
       <div className="mt-20 flex flex-col items-center gap-3">
         <DoodleSun className="w-8 opacity-15" />
-        <span className="doodle-note opacity-45">
-          — 更多作品陆续整理中 —
-        </span>
+        <span className="doodle-note opacity-45">— 更多作品陆续整理中 —</span>
       </div>
     </div>
   )

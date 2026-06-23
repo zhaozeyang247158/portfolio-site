@@ -23,7 +23,7 @@ export default function ProjectCard({ project, index = 0 }) {
         <div className="absolute top-0 right-0 w-0 h-0 pointer-events-none"
           style={{
             borderLeft: '18px solid transparent',
-            borderTop: '18px solid #F5F0E8',
+            borderTop: '18px solid #F8F5EF',
             opacity: 0.7,
           }}
         />
