@@ -3,57 +3,57 @@
 // 后续新增 / 修改 / 删除作品，只改这一个文件，不需要碰页面组件
 // ============================================================
 //
-// ┌─ 新增一个作品 ─────────────────────────────────────────────
-// │  在 projects 数组末尾追加一个对象，结构见下方模板。
-// │  图片放到 public/images/，路径写 /images/文件名.jpg
-// └────────────────────────────────────────────────────────────
+// ── contentBlocks 完整字段说明 ──────────────────────────────
 //
-// ┌─ 删除一个作品 ─────────────────────────────────────────────
-// │  删除 projects 数组里对应的整个 { id, title, ... } 对象
-// │  页面自动减少，不需要改其他文件
-// └────────────────────────────────────────────────────────────
+//  {
+//    title:      '模块标题',               // 必填
+//    type:       'imageText',              // 可选，见下方类型说明
+//    layout:     'left',                  // 可选：'left'（默认左图右文）| 'right'（右图左文）
+//                                         // 不填时按 index 自动交错
+//    paragraphs: ['第一段。', '第二段。'],  // 正文段落，可多段，也可为 []
+//    bullets:    ['要点一', '要点二'],     // 可选要点列表，可为 []
+//    images: [                            // 图片数组，0张/1张/多张均可
+//      { src: '/images/xxx.jpg', alt: '说明', caption: '图片下注' },
+//    ],
+//    tags:  ['标签1', '标签2'],           // 可选，可为 []
+//    note:  '手写批注',                   // 可选，留空填 ''
+//  }
 //
-// ┌─ 新增一个核心内容模块 ──────────────────────────────────────
-// │  在对应作品的 detail.contentBlocks 数组末尾追加一个对象：
-// │  {
-// │    image:    '/images/xxx.jpg',   // 图片路径
-// │    imageAlt: '图片说明文字',       // alt 文本（可省略，用 title 代替）
-// │    title:    '模块标题',
-// │    text:     '2-4 句说明文字。',
-// │    note:     '← 可选手写批注',     // 留空填 ''
-// │    tags:     ['标签A', '标签B'],   // 留空填 []
-// │  }
-// │  编号和图文左右交错会自动计算，不需要手动指定
-// └────────────────────────────────────────────────────────────
+// ── type 类型说明 ────────────────────────────────────────────
 //
-// ┌─ 删除一个核心内容模块 ──────────────────────────────────────
-// │  删除 detail.contentBlocks 数组里对应的对象即可
-// │  编号会自动重新计算
-// └────────────────────────────────────────────────────────────
+//  imageText   图文并排（有图有文，默认）
+//  textOnly    纯文字，不放图片
+//  gallery     多图展示（2张以上），适合过程截图、对比图
+//  fullImage   单张大图展示，全宽，适合整体界面图、最终效果图
+//  steps       步骤 / 流程 / 方法列表，用 bullets 字段填内容（'list' 为旧别名，仍可用）
 //
-// ┌─ contentBlocks 为 0 个时 ────────────────────────────────
-// │  detail.contentBlocks 填 [] 或直接省略这个字段
-// │  详情页会显示「核心内容待补充」，不报错
-// └────────────────────────────────────────────────────────────
+// ── 各 type 的建议字段组合 ───────────────────────────────────
 //
-// ┌─ 各字段说明 ────────────────────────────────────────────────
-// │  id        必填，唯一字符串，用于 URL /project/<id>
-// │  title     必填，作品名称
-// │  summary   必填，一句话概述（出现在卡片和详情页顶部）
-// │  tags      必填，标签数组（可为空数组 []）
-// │  cover     必填，封面图路径，图片放 public/images/
-// │  date      必填，完成时间，格式 'YYYY-MM'
-// │  detail
-// │    .background      项目背景，2-4 句字符串
-// │    .approach        创作/实现思路，2-4 句字符串
-// │    .contentBlocks   核心内容模块数组（见上方说明）
-// │    .highlights      项目亮点，字符串数组（可为 []）
-// │    .conclusion      总结与收获，字符串
-// └────────────────────────────────────────────────────────────
+//  imageText  : images(1张) + paragraphs + layout(可选)
+//  textOnly   : paragraphs + bullets(可选)，images 填 []
+//  gallery    : images(2张以上) + paragraphs(可选)
+//  fullImage  : images(1张) + paragraphs(可选)，图片全宽展示
+//  steps      : bullets(必填) + paragraphs(可选) + images(可选)
+//
+// ── 新增/删除作品 ────────────────────────────────────────────
+//
+//  新增：在 projects 数组末尾追加对象，id 必须唯一
+//  删除：删除对应对象，页面自动减少
+//
+// ── 新增/删除核心模块 ────────────────────────────────────────
+//
+//  新增：在 detail.contentBlocks 末尾追加对象
+//  删除：删除对应对象，编号自动重新计算
+//
+// ── 图片放哪里 ───────────────────────────────────────────────
+//
+//  图片统一放到 public/images/，路径写 /images/文件名.jpg
+//
+// ============================================================
 
 const projects = [
 
-  // ── 占位 01：4 个 contentBlocks（验证多模块连续渲染）──
+  // ── 占位 01：2 个 imageText 模块，展示常规图文布局 ──────────
   {
     id: 'placeholder-01',
     title: '作品占位 01',
@@ -68,36 +68,37 @@ const projects = [
         '这里填写创作或实现思路，包括技术选型、方法论、关键决策等。可以写 2-4 句。',
       contentBlocks: [
         {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块一示意图',
-          title:    '核心模块一标题',
-          text:     '这里写对应模块的 2-4 句说明，描述这部分做了什么、解决了什么问题。读者可以边看图边理解文字。',
-          note:     '← 替换成真实截图效果更佳',
-          tags:     ['功能一', '技术点'],
+          type:   'imageText',
+          layout: 'left',           // 左图右文
+          title:  '核心功能展示',
+          paragraphs: [
+            '这里写第一段说明，描述这个模块做了什么、解决了什么问题。',
+            '这里写第二段，可以补充技术细节或使用方式。支持多段落，不限数量。',
+          ],
+          bullets: [],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '核心功能截图', caption: '' },
+          ],
+          tags:  ['功能一', '技术点'],
+          note:  '← 替换成真实截图效果更佳',
         },
         {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块二示意图',
-          title:    '核心模块二标题',
-          text:     '第二个模块的说明。图文位置会自动左右交替，营造阅读节奏感。',
-          note:     '',
-          tags:     ['数据', '结果'],
-        },
-        {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块三示意图',
-          title:    '核心模块三标题',
-          text:     '第三个模块的说明。如果模块不足，直接删除对应对象，编号自动重新计算。',
-          note:     '',
-          tags:     [],
-        },
-        {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块四示意图',
-          title:    '核心模块四标题',
-          text:     '第四个模块。这里演示多于 3 个模块时的连续渲染效果，布局不会崩坏。',
-          note:     '// 后续补充真实内容',
-          tags:     ['扩展'],
+          type:   'imageText',
+          layout: 'right',          // 右图左文
+          title:  '数据与结果',
+          paragraphs: [
+            '这里写第二个模块的说明。layout 设为 right 时，图片在右侧、文字在左侧。',
+          ],
+          bullets: [
+            '可量化指标一',
+            '可量化指标二',
+            '可量化指标三',
+          ],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '数据结果图', caption: '数据来源：占位' },
+          ],
+          tags:  ['数据', '结果'],
+          note:  '',
         },
       ],
       highlights: [
@@ -110,7 +111,7 @@ const projects = [
     },
   },
 
-  // ── 占位 02：2 个 contentBlocks ──
+  // ── 占位 02：imageText + gallery，展示多图 ─────────────────
   {
     id: 'placeholder-02',
     title: '作品占位 02',
@@ -123,20 +124,33 @@ const projects = [
       approach:   '这里填写创作或实现思路，2-4 句。',
       contentBlocks: [
         {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块一示意图',
-          title:    '模块一标题',
-          text:     '说明文字占位，后续替换为真实内容。',
-          note:     '',
-          tags:     ['标签'],
+          type:   'imageText',
+          layout: 'left',
+          title:  '主要功能模块',
+          paragraphs: [
+            '这里写功能说明，一段或多段均可。',
+          ],
+          bullets: [],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '功能截图', caption: '' },
+          ],
+          tags:  ['核心功能'],
+          note:  '',
         },
         {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块二示意图',
-          title:    '模块二标题',
-          text:     '说明文字占位，后续替换为真实内容。',
-          note:     '',
-          tags:     [],
+          type:   'gallery',         // 多图展示
+          title:  '过程截图 / 效果图集',
+          paragraphs: [
+            '这里是多图展示模块，适合放设计稿、过程截图、对比图等。images 数组里放几张就显示几张。',
+          ],
+          bullets: [],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '过程图一', caption: '步骤一' },
+            { src: '/images/placeholder-detail.svg', alt: '过程图二', caption: '步骤二' },
+            { src: '/images/placeholder-detail.svg', alt: '过程图三', caption: '步骤三' },
+          ],
+          tags:  [],
+          note:  '← 可替换为真实截图',
         },
       ],
       highlights: ['亮点一。', '亮点二。'],
@@ -144,7 +158,7 @@ const projects = [
     },
   },
 
-  // ── 占位 03：1 个 contentBlocks（验证单模块不报错）──
+  // ── 占位 03：fullImage + textOnly，展示大图和纯文字 ─────────
   {
     id: 'placeholder-03',
     title: '作品占位 03',
@@ -157,12 +171,30 @@ const projects = [
       approach:   '这里填写创作或实现思路。',
       contentBlocks: [
         {
-          image:    '/images/placeholder-detail.svg',
-          imageAlt: '模块一示意图',
-          title:    '唯一核心模块',
-          text:     '只有一个模块时，正常显示左图右文，不报错，不崩布局。',
-          note:     '← 可替换为真实截图',
-          tags:     ['核心功能'],
+          type:   'fullImage',       // 单张大图，全宽展示
+          title:  '最终界面 / 整体效果',
+          paragraphs: [
+            '这里可以写一句对整体效果的简短说明，或者留空。',
+          ],
+          bullets: [],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '整体界面大图', caption: '最终效果展示' },
+          ],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'textOnly',        // 纯文字，不放图片
+          title:  '方法与思考',
+          paragraphs: [
+            '这里写纯文字内容，不需要配图时使用 textOnly 类型。',
+            '可以写多段，每段是数组里的一个字符串。',
+            '适合写分析过程、复盘内容、方法论说明等不需要截图的部分。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '// 纯文字模块，无需图片',
         },
       ],
       highlights: ['亮点一。'],
@@ -170,7 +202,7 @@ const projects = [
     },
   },
 
-  // ── 占位 04：0 个 contentBlocks（验证空状态不报错）──
+  // ── 占位 04：steps + imageText，展示步骤列表 ─────────────────
   {
     id: 'placeholder-04',
     title: '作品占位 04',
@@ -181,7 +213,38 @@ const projects = [
     detail: {
       background: '这里填写项目背景介绍。',
       approach:   '这里填写创作或实现思路。',
-      contentBlocks: [],           // 空数组：详情页显示「核心内容待补充」
+      contentBlocks: [
+        {
+          type:   'steps',           // 步骤 / 流程 / 方法列表
+          title:  '实现步骤 / 工作流程',
+          paragraphs: [
+            '这里简单描述这个流程的背景或目标。',
+          ],
+          bullets: [
+            '第一步：做了什么，解决了什么问题。',
+            '第二步：继续展开。',
+            '第三步：补充说明。',
+            '第四步：最终结果。',
+          ],
+          images: [],
+          tags:  ['流程', '方法'],
+          note:  '',
+        },
+        {
+          type:   'imageText',
+          layout: 'left',
+          title:  '核心产出',
+          paragraphs: [
+            '这里写核心产出的说明，配一张结果截图。',
+          ],
+          bullets: [],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '核心产出截图', caption: '' },
+          ],
+          tags:  ['成果'],
+          note:  '',
+        },
+      ],
       highlights: ['亮点一。', '亮点二。'],
       conclusion: '总结与收获占位文案。',
     },
