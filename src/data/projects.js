@@ -59,7 +59,7 @@ const projects = [
     title: '采销智能分析台',
     summary: '面向采销、商品运营和品类运营场景的数据分析产品原型，支持从业务问题出发，完成数据识别、SKU 分析、销售排行、主推推荐、图表展示和报告沉淀。',
     tags: ['AI 编程', '采销分析', '品类经营', 'SKU 分析', 'PostgreSQL', '数据可视化'],
-    cover: '/images/placeholder-cover.svg',
+    cover: '/images/category-dashboard-cover.png',
     date: '2025-06',
     detail: {
       background:
@@ -76,10 +76,10 @@ const projects = [
           ],
           bullets: [],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '分析台整体界面预览', caption: '// 待替换为真实截图' },
+            { src: '/images/category-dashboard-overview.png', alt: '分析台整体界面预览', caption: '' },
           ],
           tags:  ['项目概览', '采销分析', '数据产品原型', 'AI 编程'],
-          note:  '← 图片待替换，文案已完整',
+          note:  '',
         },
         // 模块 2
         {
@@ -95,7 +95,7 @@ const projects = [
             '示例："低脂牛奶中，哪些 SKU 值得优先主推？"',
           ],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '智能分析页截图', caption: '自然语言输入 → 分析结果输出' },
+            { src: '/images/category-dashboard-analysis.png', alt: '智能分析页截图', caption: '自然语言输入 → 分析结果输出' },
           ],
           tags:  ['自然语言问题', '业务识别', '智能分析'],
           note:  '',
@@ -110,7 +110,7 @@ const projects = [
           ],
           bullets: [],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '数据库浏览器截图', caption: '表结构 & 字段 & 样例数据' },
+            { src: '/images/category-dashboard-database.png', alt: '数据库浏览器截图', caption: '表结构 & 字段 & 样例数据' },
           ],
           tags:  ['PostgreSQL', '数据表', '字段查看', 'SKU 数据'],
           note:  '',
@@ -125,7 +125,7 @@ const projects = [
           ],
           bullets: [],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '数据导入中心截图', caption: 'Excel/CSV 上传 & 字段映射' },
+            { src: '/images/category-dashboard-import.png', alt: '数据导入中心截图', caption: 'Excel/CSV 上传 & 字段映射' },
           ],
           tags:  ['Excel', 'CSV', '字段映射', '外部数据'],
           note:  '',
@@ -140,7 +140,7 @@ const projects = [
           ],
           bullets: [],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '销售排行分析截图', caption: 'SKU 销售额 & 销量排行' },
+            { src: '/images/category-dashboard-ranking.png', alt: '销售排行分析截图', caption: 'SKU 销售额 & 销量排行' },
           ],
           tags:  ['销售额', '销量', 'SKU 排行', '商品表现'],
           note:  '',
@@ -159,7 +159,7 @@ const projects = [
             '定位：辅助判断，而非替代运营决策',
           ],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '主推 SKU 推荐截图', caption: '综合评分 & 推荐列表' },
+            { src: '/images/category-dashboard-recommend.png', alt: '主推 SKU 推荐截图', caption: '综合评分 & 推荐列表' },
           ],
           tags:  ['主推 SKU', '综合评分', '运营优先级', '经营判断'],
           note:  '// 综合评分逻辑是这个项目里反复调整最多的部分',
@@ -174,7 +174,7 @@ const projects = [
           ],
           bullets: [],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '图表与结果展示截图', caption: '表格 & 指标卡 & 图表' },
+            { src: '/images/category-dashboard-chart.png', alt: '图表与结果展示截图', caption: '表格 & 指标卡 & 图表' },
           ],
           tags:  ['图表展示', '关键指标', '结果可视化'],
           note:  '',
@@ -189,7 +189,7 @@ const projects = [
           ],
           bullets: [],
           images: [
-            { src: '/images/placeholder-detail.svg', alt: '报告中心截图', caption: 'Markdown 报告预览 & 下载' },
+            { src: '/images/category-dashboard-report.png', alt: '报告中心截图', caption: 'Markdown 报告预览 & 下载' },
           ],
           tags:  ['Markdown 报告', '报告中心', '结果沉淀'],
           note:  '',
