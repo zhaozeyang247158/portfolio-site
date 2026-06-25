@@ -1,6 +1,24 @@
 # PROJECT_LOG — 作品集网站开发日志
 
-> 最后更新：2026-06-23
+> 最后更新：2026-06-25
+
+---
+
+## 今日完成内容（2026-06-25）
+
+- 已将采销智能分析台 9 张截图放入 `public/images/`
+- 已将 `category-analysis-dashboard` 的 `cover` 和 8 个内容模块图片路径替换为真实截图（模块 9 为 textOnly，无需图片）
+- 发现 `category-dashboard-recommend.png` 原文件名存在双扩展名（`.png.png`），已重命名修正
+- Codex 验收通过
+- `npm run build` 构建通过，无报错
+- 当前稳定 commit：`9e401e2`（connect category dashboard screenshots）
+- 打 tag：`v0.7-category-dashboard-screenshots`
+
+**下一步：**
+- [ ] 本地 `npm run dev`，人工检查采销智能分析台详情页观感、图片比例、页面长度
+- [ ] 如满意，准备第二个真实作品或进入部署前检查
+
+---
 
 ---
 
@@ -44,30 +62,30 @@
 ## 当前 Git 关键版本
 
 ```
-80549be  update category dashboard project content   ← 当前最新
+9e401e2  connect category dashboard screenshots       ← 当前最新
+480a8b0  add project log and next steps
+80549be  update category dashboard project content
 bc82167  add category analysis dashboard project draft
 4030b49  make project content blocks flexible
 5d544df  refine sign holder pose on portfolio page
 437ecd1  refine doodle characters and enrich detail page margins
 bc69432  remove unused about page file
-ae2c43c  simplify navigation and update contact page
-f1cd066  make portfolio data fully extensible
-4b15d8d  refine portfolio layout and doodle style
-4d0db52  init portfolio site framework
 ```
 
-当前 tag：`v0.6-flexible-content-blocks`（指向 `4030b49`）
+当前 tag：
+- `v0.7-category-dashboard-screenshots`（指向 `9e401e2`）
+- `v0.6-flexible-content-blocks`（指向 `4030b49`）
 
 ---
 
-## 明天继续做的任务
+## 历史待办（2026-06-23 记录，已完成项标注）
 
-- [ ] 本地 `npm run dev`，打开浏览器检查"采销智能分析台"详情页阅读体验
+- [x] 本地 `npm run dev`，打开浏览器检查"采销智能分析台"详情页阅读体验
 - [ ] 检查 9 个核心模块是否过长，必要时合并或精简文案
-- [ ] 截取采销智能分析台的真实截图（见下方图片清单）
-- [ ] 将截图放入 `public/images/`
-- [ ] 替换 `src/data/projects.js` 中 `category-analysis-dashboard` 的所有图片路径
-- [ ] 更新 `cover` 封面图路径
+- [x] 截取采销智能分析台的真实截图（见下方图片清单）
+- [x] 将截图放入 `public/images/`
+- [x] 替换 `src/data/projects.js` 中 `category-analysis-dashboard` 的所有图片路径
+- [x] 更新 `cover` 封面图路径
 - [ ] 继续准备第二个真实作品，更新 placeholder-02
 - [ ] 后续再考虑推送 GitHub 和部署 Vercel（不急）
 
