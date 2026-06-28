@@ -8,8 +8,8 @@
 //  {
 //    title:      '模块标题',               // 必填
 //    type:       'imageText',              // 可选，见下方类型说明
-//    layout:     'left',                  // 可选：'left'（默认左图右文）| 'right'（右图左文）
-//                                         // 不填时按 index 自动交错
+//    layout:     'left',                  // 兼容保留字段（历史遗留，当前不控制布局）
+//                                         // imageText 统一渲染为"上文下图"，此字段不再生效
 //    paragraphs: ['第一段。', '第二段。'],  // 正文段落，可多段，也可为 []
 //    bullets:    ['要点一', '要点二'],     // 可选要点列表，可为 []
 //    images: [                            // 图片数组，0张/1张/多张均可
@@ -21,7 +21,7 @@
 //
 // ── type 类型说明 ────────────────────────────────────────────
 //
-//  imageText   图文并排（有图有文，默认）
+//  imageText   上文下图（文字介绍在上，全宽大图在下，默认）
 //  textOnly    纯文字，不放图片
 //  gallery     多图展示（2张以上），适合过程截图、对比图
 //  fullImage   单张大图展示，全宽，适合整体界面图、最终效果图
@@ -29,7 +29,7 @@
 //
 // ── 各 type 的建议字段组合 ───────────────────────────────────
 //
-//  imageText  : images(1张) + paragraphs + layout(可选)
+//  imageText  : images(1张) + paragraphs + layout(兼容保留，不生效)
 //  textOnly   : paragraphs + bullets(可选)，images 填 []
 //  gallery    : images(2张以上) + paragraphs(可选)
 //  fullImage  : images(1张) + paragraphs(可选)，图片全宽展示

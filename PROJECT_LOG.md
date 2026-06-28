@@ -1,11 +1,35 @@
 # PROJECT_LOG — 作品集网站开发日志
 
-> 最后更新：2026-06-25
+> 最后更新：2026-06-28
+
+---
+
+## 今日完成内容（2026-06-28）
+
+- 调整作品详情页 imageText 模块展示顺序：从左右图文并排改为**上文下图**（文字介绍在上，全宽大图在下）
+- 图片改为全宽展示（`w-full h-auto object-contain`），保留手绘卡片边框风格
+- 移除图片卡片外层的 `overflow-hidden`，手绘阴影伪元素可正常显示
+- 作品详情页图片支持点击打开原图（新标签页），hover 显示 `cursor-zoom-in`，便于查看细节
+- 诊断图片分辨率情况（见下方图片质量备注）
+- `npm run build` 构建通过
+- Codex 代码验收通过；浏览器人工视觉验收待下一步完成
+- 关键 commit：`65d9cca`（improve project image clarity）
+- 打 tag：`v0.8-detail-images-readable`
+
+**图片质量备注（暂不重截，后续可优化）：**
+- `category-dashboard-recommend.png`：宽度仅 1013px（低于建议的 1400px），建议重截
+- `category-dashboard-report.png`：文件体积极小（65.4KB），疑似有损压缩，建议重截
+- `category-dashboard-import.png`：体积偏小（77.7KB），建议重截
+- 重截规格：浏览器缩放 100%，宽度 ≥1400px，保存为 PNG（无损），不经 JPEG 中转
+
+**下一步：**
+- [ ] 本地 `npm run dev`，人工检查"上文下图"布局和点击查看原图效果
+- [ ] 如图片仍不满意，重新导出上述三张截图
+- [ ] 继续准备第二个真实作品，更新 placeholder-02
 
 ---
 
 ## 今日完成内容（2026-06-25）
-
 - 已将采销智能分析台 9 张截图放入 `public/images/`
 - 已将 `category-analysis-dashboard` 的 `cover` 和 8 个内容模块图片路径替换为真实截图（模块 9 为 textOnly，无需图片）
 - 发现 `category-dashboard-recommend.png` 原文件名存在双扩展名（`.png.png`），已重命名修正
