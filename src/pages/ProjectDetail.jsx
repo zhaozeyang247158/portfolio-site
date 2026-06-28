@@ -275,7 +275,7 @@ function BlockImage({ img, className = '' }) {
   return (
     <figure className={className}>
       <div className="card-doodle overflow-hidden">
-        <img src={img.src} alt={img.alt || ''} className="w-full object-cover" />
+        <img src={img.src} alt={img.alt || ''} className="w-full h-auto object-contain" />
       </div>
       {img.caption && (
         <figcaption className="doodle-note mt-1 ml-1 opacity-50">{img.caption}</figcaption>
@@ -297,32 +297,24 @@ function DoodleLine() {
 // 各类型渲染组件
 // ════════════════════════════════════════════════════════════
 
-// ── imageText：图文并排 ───────────────────────────────────────
-// layout:'left' → 左图右文  |  layout:'right' → 右图左文
-// 不填 layout 时按 index 自动交错
+// ── imageText：上图下文 ───────────────────────────────────────
+// layout 字段保留兼容但不影响渲染（统一上图下文）
 function BlockImageText({ block, index }) {
-  const isRight = block.layout === 'right' || (!block.layout && index % 2 === 1)
-  const firstImg = block.images && block.images[0]
+  const imgs = block.images || []
 
   return (
-    <div className={`flex flex-col gap-6 md:gap-8 items-start ${
-      isRight ? 'md:flex-row-reverse' : 'md:flex-row'
-    }`}>
-      {/* 图片侧（有图才渲染） */}
-      {firstImg && (
-        <div className="w-full md:w-[62%] shrink-0">
-          <BlockImage img={firstImg} />
-          {/* 超过1张时额外展示 */}
-          {block.images.length > 1 && block.images.slice(1).map((img, i) => (
-            <div key={i} className="mt-3">
-              <BlockImage img={img} />
-            </div>
+    <div className="flex flex-col gap-5">
+      {/* 图片区：全宽大图 */}
+      {imgs.length > 0 && (
+        <div className="w-full space-y-3">
+          {imgs.map((img, i) => (
+            <BlockImage key={i} img={img} />
           ))}
         </div>
       )}
 
-      {/* 文字侧 */}
-      <div className="flex-1 flex flex-col gap-2 pt-1">
+      {/* 文字区：图片下方，限宽保持可读性 */}
+      <div className="flex flex-col gap-2 max-w-3xl">
         <BlockTitle index={index} title={block.title} />
         <Paragraphs items={block.paragraphs} />
         <Bullets items={block.bullets} />
