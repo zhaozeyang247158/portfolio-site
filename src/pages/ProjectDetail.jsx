@@ -63,7 +63,7 @@ export default function ProjectDetail() {
       </div>
 
       {/* ═══ 主体内容 ═══ */}
-      <article className="page-container py-16 md:py-24 max-w-3xl">
+      <article className="page-container py-16 md:py-24 max-w-5xl">
 
         {/* 面包屑 */}
         <nav className="mb-10 font-mono text-xs text-ink-faint tracking-widest flex items-center gap-2">
@@ -310,7 +310,7 @@ function BlockImageText({ block, index }) {
     }`}>
       {/* 图片侧（有图才渲染） */}
       {firstImg && (
-        <div className="w-full md:w-[48%] shrink-0">
+        <div className="w-full md:w-[62%] shrink-0">
           <BlockImage img={firstImg} />
           {/* 超过1张时额外展示 */}
           {block.images.length > 1 && block.images.slice(1).map((img, i) => (
