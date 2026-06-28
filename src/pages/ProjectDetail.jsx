@@ -274,8 +274,14 @@ function BlockImage({ img, className = '' }) {
   if (!img) return null
   return (
     <figure className={className}>
-      <div className="card-doodle overflow-hidden">
-        <img src={img.src} alt={img.alt || ''} className="w-full h-auto object-contain" />
+      <div className="card-doodle">
+        <a href={img.src} target="_blank" rel="noopener noreferrer" className="block">
+          <img
+            src={img.src}
+            alt={img.alt || ''}
+            className="w-full h-auto object-contain cursor-zoom-in"
+          />
+        </a>
       </div>
       {img.caption && (
         <figcaption className="doodle-note mt-1 ml-1 opacity-50">{img.caption}</figcaption>
