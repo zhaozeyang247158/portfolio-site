@@ -297,13 +297,22 @@ function DoodleLine() {
 // 各类型渲染组件
 // ════════════════════════════════════════════════════════════
 
-// ── imageText：上图下文 ───────────────────────────────────────
-// layout 字段保留兼容但不影响渲染（统一上图下文）
+// ── imageText：上文下图 ───────────────────────────────────────
+// layout 字段保留兼容但不影响渲染（统一上文下图）
 function BlockImageText({ block, index }) {
   const imgs = block.images || []
 
   return (
     <div className="flex flex-col gap-5">
+      {/* 文字区：图片上方，限宽保持可读性 */}
+      <div className="flex flex-col gap-2 max-w-3xl">
+        <BlockTitle index={index} title={block.title} />
+        <Paragraphs items={block.paragraphs} />
+        <Bullets items={block.bullets} />
+        <BlockMeta tags={block.tags} note={block.note} />
+        <DoodleLine />
+      </div>
+
       {/* 图片区：全宽大图 */}
       {imgs.length > 0 && (
         <div className="w-full space-y-3">
@@ -312,15 +321,6 @@ function BlockImageText({ block, index }) {
           ))}
         </div>
       )}
-
-      {/* 文字区：图片下方，限宽保持可读性 */}
-      <div className="flex flex-col gap-2 max-w-3xl">
-        <BlockTitle index={index} title={block.title} />
-        <Paragraphs items={block.paragraphs} />
-        <Bullets items={block.bullets} />
-        <BlockMeta tags={block.tags} note={block.note} />
-        <DoodleLine />
-      </div>
     </div>
   )
 }
