@@ -315,6 +315,105 @@ const projects = [
     },
   },
 
+  // ── AI Agent 项目标准化交付工作流 ────────────────────────────
+  {
+    id: 'ai-agent-workflow',
+    title: 'AI Agent 项目标准化交付工作流',
+    summary: '围绕 AI 辅助开发中需求模糊、执行不可控、验收缺失和过程难复盘等问题，搭建一套 ChatGPT 总控、Claude Code 执行、Codex 验收、VS Code 承载的标准化项目交付流程。',
+    tags: ['AI Agent', '项目管理', '需求拆解', '工作流设计', '质量验收', 'Git'],
+    cover: '/images/placeholder-cover.svg',
+    date: '2026',
+    detail: {
+      background:
+        '在使用 AI Agent 辅助开发个人项目时，单纯把需求交给 AI 并不能稳定产出可用的结果。AI 可以快速生成代码，但如果缺少明确的需求边界、任务说明和验收标准，容易出现改动范围失控、结果难以判断、问题无法定位等情况。对于非计算机科班背景的开发者来说，AI 工具能降低执行门槛，但没有流程约束，很难判断项目是否真的完成、哪里出了问题。基于这一观察，这个项目尝试为 AI 辅助开发建立角色分工、文档约束和验收节点，让每一轮开发有明确边界、有检查节点、有 Git 留痕。',
+      approach:
+        '这套流程将 AI 辅助开发拆解为需求定义、任务拆解、开发执行、代码验收、问题返工和版本留痕六个环节。ChatGPT 负责项目总控和需求拆解，Claude Code 负责实际开发执行，Codex 负责基于验收标准和 git diff 进行独立检查，VS Code 作为主力工作台承载项目文件、终端和 Git。每个环节对应 PRD、ARCHITECTURE、TASKS、ACCEPTANCE、BUG_REPORT 等固定文档，约束每一轮开发的目标、边界和返工路径。',
+      contentBlocks: [
+        {
+          type:   'textOnly',
+          title:  '项目核心问题',
+          paragraphs: [
+            'Vibe Coding 的常见问题不在于 AI 写不出代码，而在于没有明确边界：需求不固定、改动无记录、结果靠感觉判断，出了问题也难以定位。这个项目的出发点是为 AI 执行过程补上 PRD、任务书、验收标准和 bug 记录，形成可追踪的完整链路。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'steps',
+          title:  '标准交付流程',
+          paragraphs: [],
+          bullets: [
+            '用户提出业务想法或项目需求',
+            'ChatGPT 将模糊需求拆解为 PRD、架构说明、任务书和验收标准',
+            'Claude Code 基于 TASKS 执行开发，真实修改文件并运行命令',
+            'Codex 基于 ACCEPTANCE 和 git diff 独立验收，输出通过、部分通过或不通过',
+            'ChatGPT 将验收问题整理成 BUG_REPORT 和返工指令',
+            'Claude Code 修复问题后由 Codex 复验',
+            '通过后进行 Git commit，留下阶段成果',
+          ],
+          images: [],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'textOnly',
+          title:  '三角色协同机制',
+          paragraphs: [
+            '流程将三个 AI 工具拆分为不同角色：ChatGPT 负责需求澄清、任务拆解和返工整理；Claude Code 负责读取项目、修改文件、运行命令；Codex 负责基于验收标准和 git diff 核查改动，输出通过或问题分级。角色分离的目的是让每个环节有明确的输入输出，而不是让一个工具包揽所有判断。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'textOnly',
+          title:  '标准文档体系',
+          paragraphs: [
+            '每个环节对应一份固定文档：PRD 定义项目目标和需求边界，ARCHITECTURE 说明项目结构和技术链路，TASKS 约束本轮开发范围，ACCEPTANCE 列出本轮的验收标准，BUG_REPORT 记录问题描述、返工指令和复验结果。文档作为 AI 执行的输入和输出容器，减少因理解偏差导致的改动跑偏。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'textOnly',
+          title:  '落地应用案例',
+          paragraphs: [
+            '这套工作流已经应用于采销智能分析台项目的开发与迭代。采销智能分析台是面向采销、商品运营和品类运营场景的数据分析产品原型，支持从 PostgreSQL 示例数据库或 Excel、CSV 文件中读取品类、品牌和 SKU 数据，完成销售排行、主推 SKU 推荐、图表展示和报告生成。具体操作中，由 ChatGPT 拆解需求并生成任务指令，Claude Code 执行功能开发，最后使用 Codex 对改动进行复查。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'textOnly',
+          title:  '项目价值',
+          paragraphs: [
+            '该项目关注的不是某个 AI 工具的使用，而是把模糊的业务想法拆解为结构化任务，并为 AI 执行过程建立任务边界、验收节点和 Git 留痕。相比自由式的 AI 辅助开发，这套方法的区别在于：每个环节有文档输入，改动有 git diff 可查，问题有 bug 记录可追。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '',
+        },
+      ],
+      highlights: [
+        '将 AI 辅助开发从随机试错转化为标准化交付流程',
+        '建立 ChatGPT 总控、Claude Code 执行、Codex 验收的三角色协同机制',
+        '通过 PRD、TASKS、ACCEPTANCE、BUG_REPORT 等文档约束 AI 执行过程',
+        '引入 git diff、问题分级和复验机制，提高项目结果的可控性',
+        '已应用于采销智能分析台等个人项目的完整开发与迭代周期',
+      ],
+      conclusion:
+        '这套流程已经在实际项目中跑通，从需求拆解到 Git 留痕，每个环节都有对应的文档和输出。目前的版本适合个人项目场景，覆盖了从业务想法到阶段交付的完整链路。后续希望在团队协作或更复杂的需求场景下进一步验证和调整。',
+    },
+  },
+
   // ── 占位 04：steps + imageText，展示步骤列表 ─────────────────
   {
     id: 'placeholder-04',
