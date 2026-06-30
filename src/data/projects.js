@@ -280,13 +280,16 @@ const projects = [
           note:  '',
         },
         {
-          type:   'textOnly',
+          type:   'gallery',
           title:  '标准文档体系',
           paragraphs: [
             '每个环节对应一份固定文档：PRD 定义项目目标和需求边界，ARCHITECTURE 说明项目结构和技术链路，TASKS 约束本轮开发范围，ACCEPTANCE 列出本轮的验收标准，BUG_REPORT 记录问题描述、返工指令和复验结果。文档作为 AI 执行的输入和输出容器，减少因理解偏差导致的改动跑偏。',
           ],
           bullets: [],
-          images: [],
+          images: [
+            { src: '/images/ai-agent-workflow-docs-structure.png', alt: 'docs 文件夹结构', caption: 'AI_Coding_Workflow_Template/docs 文件夹结构，展示 PRD、ARCHITECTURE、TASKS、ACCEPTANCE、BUG_REPORT 等标准文档。' },
+            { src: '/images/ai-agent-workflow-task-acceptance.png', alt: 'TASKS.md 与 ACCEPTANCE.md 内容片段', caption: 'TASKS.md 与 ACCEPTANCE.md 真实片段，展示开发任务书与验收标准的对应关系。' },
+          ],
           tags:  [],
           note:  '',
         },
@@ -304,13 +307,15 @@ const projects = [
           note:  '',
         },
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '项目价值',
           paragraphs: [
             '该项目关注的不是某个 AI 工具的使用，而是把模糊的业务想法拆解为结构化任务，并为 AI 执行过程建立任务边界、验收节点和 Git 留痕。相比自由式的 AI 辅助开发，这套方法的区别在于：每个环节有文档输入，改动有 git diff 可查，问题有 bug 记录可追。',
           ],
           bullets: [],
-          images: [],
+          images: [
+            { src: '/images/ai-agent-workflow-git-log.png', alt: 'Git log 真实记录', caption: 'Git log 真实记录，展示作品集项目从新增内容、封面、图文优化到详情页增强的版本留痕。' },
+          ],
           tags:  [],
           note:  '',
         },
