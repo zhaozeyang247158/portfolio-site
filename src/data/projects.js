@@ -267,13 +267,15 @@ const projects = [
           note:  '',
         },
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '三角色协同机制',
           paragraphs: [
             '流程将三个 AI 工具拆分为不同角色：ChatGPT 负责需求澄清、任务拆解和返工整理；Claude Code 负责读取项目、修改文件、运行命令；Codex 负责基于验收标准和 git diff 核查改动，输出通过或问题分级。角色分离的目的是让每个环节有明确的输入输出，而不是让一个工具包揽所有判断。',
           ],
           bullets: [],
-          images: [],
+          images: [
+            { src: '/images/ai-agent-workflow-cover.svg', alt: 'AI Agent 项目交付闭环示意图', caption: 'ChatGPT 总控、Claude Code 执行、Codex 验收与 Git 留痕组成的 AI Agent 项目交付闭环。' },
+          ],
           tags:  [],
           note:  '',
         },
@@ -289,13 +291,15 @@ const projects = [
           note:  '',
         },
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '落地应用案例',
           paragraphs: [
             '这套工作流已经应用于采销智能分析台项目的开发与迭代。采销智能分析台是面向采销、商品运营和品类运营场景的数据分析产品原型，支持从 PostgreSQL 示例数据库或 Excel、CSV 文件中读取品类、品牌和 SKU 数据，完成销售排行、主推 SKU 推荐、图表展示和报告生成。具体操作中，由 ChatGPT 拆解需求并生成任务指令，Claude Code 执行功能开发，最后使用 Codex 对改动进行复查。',
           ],
           bullets: [],
-          images: [],
+          images: [
+            { src: '/images/category-dashboard-overview.png', alt: '采销智能分析台整体界面', caption: '该工作流已用于采销智能分析台项目，图中展示的是采销业务分析产品原型页面。' },
+          ],
           tags:  [],
           note:  '',
         },
