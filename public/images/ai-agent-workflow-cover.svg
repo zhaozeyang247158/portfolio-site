@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" fill="none">
+
+  <!-- Paper background -->
+  <rect width="1200" height="675" fill="#EDE8DC"/>
+
+  <!-- Subtle horizontal ruled lines (like notebook paper) -->
+  <line x1="0" y1="67"  x2="1200" y2="67"  stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="134" x2="1200" y2="134" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="201" x2="1200" y2="201" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="268" x2="1200" y2="268" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="335" x2="1200" y2="335" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="402" x2="1200" y2="402" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="469" x2="1200" y2="469" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="536" x2="1200" y2="536" stroke="#C8C0B4" stroke-width="0.6"/>
+  <line x1="0" y1="603" x2="1200" y2="603" stroke="#C8C0B4" stroke-width="0.6"/>
+
+  <!-- Hand-drawn outer border (slightly wobbly) -->
+  <path d="M 48,40 Q 52,38 1148,36 Q 1154,40 1152,636 Q 1148,640 52,638 Q 46,634 48,40Z"
+    stroke="#6B6560" stroke-width="1.6" stroke-dasharray="10 6" fill="none"/>
+
+  <!-- ── TITLE ── -->
+  <text x="600" y="100" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="42" fill="#2C2C2C" letter-spacing="8">AI Agent Workflow</text>
+
+  <!-- Title underline (hand-drawn wavy) -->
+  <path d="M 340,118 Q 470,113 600,118 Q 730,123 860,118"
+    stroke="#2C2C2C" stroke-width="1" fill="none" opacity="0.3" stroke-linecap="round"/>
+
+  <!-- Subtitle -->
+  <text x="600" y="148" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="16" fill="#6B6560" letter-spacing="2">
+    一套 AI 工具协同的标准化项目交付闭环
+  </text>
+
+  <!-- ══════════════════════════════════════════════════════
+       NODE BOXES  (hand-drawn via path, slight irregularity)
+       Box size: 220 × 90
+       Node 1 (ChatGPT): center (265, 270)  box x=155  y=225
+       Node 2 (CC):       center (935, 270)  box x=825  y=225
+       Node 3 (Codex):    center (935, 470)  box x=825  y=425
+       Node 4 (Git):      center (265, 470)  box x=155  y=425
+  ══════════════════════════════════════════════════════════ -->
+
+  <!-- Node 1: ChatGPT 总控 -->
+  <path d="M 157,227 Q 265,223 373,226 Q 377,270 374,316 Q 265,319 157,316 Q 153,272 157,227Z"
+    stroke="#2C2C2C" stroke-width="1.6" fill="#F5F0E8"/>
+  <text x="265" y="264" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="20" fill="#2C2C2C">ChatGPT</text>
+  <text x="265" y="293" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="14" fill="#5C5048" letter-spacing="5">总 控</text>
+  <!-- role note below box -->
+  <text x="265" y="338" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="12" fill="#8B7355" opacity="0.8">需求拆解 · 任务书 · 返工整理</text>
+
+  <!-- Node 2: Claude Code 执行 -->
+  <path d="M 827,224 Q 935,220 1043,224 Q 1047,270 1044,318 Q 935,321 827,318 Q 823,272 827,224Z"
+    stroke="#2C2C2C" stroke-width="1.6" fill="#F5F0E8"/>
+  <text x="935" y="264" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="20" fill="#2C2C2C">Claude Code</text>
+  <text x="935" y="293" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="14" fill="#5C5048" letter-spacing="5">执 行</text>
+  <text x="935" y="338" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="12" fill="#8B7355" opacity="0.8">文件修改 · 命令运行 · 真实输出</text>
+
+  <!-- Node 3: Codex 验收 -->
+  <path d="M 827,427 Q 935,423 1043,427 Q 1047,473 1044,519 Q 935,522 827,519 Q 823,473 827,427Z"
+    stroke="#2C2C2C" stroke-width="1.6" fill="#F5F0E8"/>
+  <text x="935" y="467" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="20" fill="#2C2C2C">Codex</text>
+  <text x="935" y="496" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="14" fill="#5C5048" letter-spacing="5">验 收</text>
+  <text x="935" y="540" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="12" fill="#8B7355" opacity="0.8">git diff · 问题分级 · 复验</text>
+
+  <!-- Node 4: Git 留痕 -->
+  <path d="M 157,427 Q 265,423 373,427 Q 377,473 374,519 Q 265,522 157,519 Q 153,473 157,427Z"
+    stroke="#2C2C2C" stroke-width="1.6" fill="#F5F0E8"/>
+  <text x="265" y="467" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="20" fill="#2C2C2C">Git commit</text>
+  <text x="265" y="496" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="14" fill="#5C5048" letter-spacing="5">留 痕</text>
+  <text x="265" y="540" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="12" fill="#8B7355" opacity="0.8">阶段成果 · 版本记录 · 可追溯</text>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       ARROWS  (paths + filled triangle arrowheads)
+       Arrow 1 →  ChatGPT(right x=376) → CC(left x=824)   at y=270
+       Arrow 2 ↓  CC(bottom y=320)     → Codex(top y=424)  at x=935
+       Arrow 3 ←  Codex(left x=824)   → Git(right x=376)  at y=470
+       Arrow 4 ↑  Git(top y=424)      → ChatGPT(bot y=320) at x=265
+  ══════════════════════════════════════════════════════════ -->
+
+  <!-- Arrow 1: → (ChatGPT → Claude Code) -->
+  <!-- Path bows slightly upward for hand-drawn feel -->
+  <path d="M 378,270 C 510,263 690,263 812,270"
+    stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Arrowhead pointing right at x=822 -->
+  <polygon points="822,270 811,263 811,277" fill="#2C2C2C"/>
+  <!-- Step badge -->
+  <circle cx="600" cy="265" r="12" fill="#EDE8DC" stroke="#2C2C2C" stroke-width="1.2"/>
+  <text x="600" y="269" text-anchor="middle"
+    font-family="monospace" font-size="10" fill="#2C2C2C">01</text>
+  <!-- Label -->
+  <text x="600" y="247" text-anchor="middle"
+    font-family="monospace" font-size="12" fill="#5C5048" opacity="0.85">TASKS</text>
+
+
+  <!-- Arrow 2: ↓ (Claude Code → Codex) -->
+  <path d="M 935,322 C 942,360 942,385 935,422"
+    stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Arrowhead pointing down at y=425 -->
+  <polygon points="935,425 928,413 942,413" fill="#2C2C2C"/>
+  <!-- Step badge -->
+  <circle cx="943" cy="372" r="12" fill="#EDE8DC" stroke="#2C2C2C" stroke-width="1.2"/>
+  <text x="943" y="376" text-anchor="middle"
+    font-family="monospace" font-size="10" fill="#2C2C2C">02</text>
+  <!-- Label -->
+  <text x="969" y="369" text-anchor="start"
+    font-family="monospace" font-size="12" fill="#5C5048" opacity="0.85">git diff</text>
+
+
+  <!-- Arrow 3: ← (Codex → Git) -->
+  <path d="M 822,470 C 690,477 510,477 390,470"
+    stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Arrowhead pointing left at x=378 -->
+  <polygon points="378,470 390,463 390,477" fill="#2C2C2C"/>
+  <!-- Step badge -->
+  <circle cx="600" cy="475" r="12" fill="#EDE8DC" stroke="#2C2C2C" stroke-width="1.2"/>
+  <text x="600" y="479" text-anchor="middle"
+    font-family="monospace" font-size="10" fill="#2C2C2C">03</text>
+  <!-- Label -->
+  <text x="600" y="497" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="12" fill="#5C5048" opacity="0.85">通过 / BUG_REPORT</text>
+
+
+  <!-- Arrow 4: ↑ (Git → ChatGPT) -->
+  <path d="M 265,422 C 258,385 258,360 265,322"
+    stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Arrowhead pointing up at y=319 -->
+  <polygon points="265,319 258,331 272,331" fill="#2C2C2C"/>
+  <!-- Step badge -->
+  <circle cx="257" cy="372" r="12" fill="#EDE8DC" stroke="#2C2C2C" stroke-width="1.2"/>
+  <text x="257" y="376" text-anchor="middle"
+    font-family="monospace" font-size="10" fill="#2C2C2C">04</text>
+  <!-- Label -->
+  <text x="233" y="369" text-anchor="end"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="12" fill="#5C5048" opacity="0.85">下一轮</text>
+
+
+  <!-- ── CENTER: dotted circle + 闭环 label ── -->
+  <circle cx="600" cy="370" r="54" stroke="#8B7355"
+    stroke-width="1" stroke-dasharray="4 7" opacity="0.35"/>
+  <text x="600" y="367" text-anchor="middle"
+    font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif"
+    font-size="16" fill="#8B7355" opacity="0.45" letter-spacing="5">闭 环</text>
+  <text x="600" y="386" text-anchor="middle"
+    font-family="Georgia, serif" font-size="12" fill="#8B7355" opacity="0.3">loop</text>
+
+
+  <!-- ── FOOTER: document types ── -->
+  <text x="600" y="626" text-anchor="middle"
+    font-family="monospace" font-size="12" fill="#8B7355" opacity="0.5" letter-spacing="1">
+    PRD · ARCHITECTURE · TASKS · ACCEPTANCE · BUG_REPORT
+  </text>
+
+</svg>

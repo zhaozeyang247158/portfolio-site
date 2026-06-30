@@ -321,7 +321,7 @@ const projects = [
     title: 'AI Agent 项目标准化交付工作流',
     summary: '围绕 AI 辅助开发中需求模糊、执行不可控、验收缺失和过程难复盘等问题，搭建一套 ChatGPT 总控、Claude Code 执行、Codex 验收、VS Code 承载的标准化项目交付流程。',
     tags: ['AI Agent', '项目管理', '需求拆解', '工作流设计', '质量验收', 'Git'],
-    cover: '/images/placeholder-cover.svg',
+    cover: '/images/ai-agent-workflow-cover.svg',
     date: '2026',
     detail: {
       background:
