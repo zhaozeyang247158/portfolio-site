@@ -224,97 +224,6 @@ const projects = [
     },
   },
 
-  // ── 占位 02：imageText + gallery，展示多图 ─────────────────
-  {
-    id: 'placeholder-02',
-    title: '作品占位 02',
-    summary: '这里是作品一句话概述，后续替换为真实内容。',
-    tags: ['标签X', '标签Y'],
-    cover: '/images/placeholder-cover.svg',
-    date: '2025-06',
-    detail: {
-      background: '这里填写项目背景介绍，2-4 句。',
-      approach:   '这里填写创作或实现思路，2-4 句。',
-      contentBlocks: [
-        {
-          type:   'imageText',
-          layout: 'left',
-          title:  '主要功能模块',
-          paragraphs: [
-            '这里写功能说明，一段或多段均可。',
-          ],
-          bullets: [],
-          images: [
-            { src: '/images/placeholder-detail.svg', alt: '功能截图', caption: '' },
-          ],
-          tags:  ['核心功能'],
-          note:  '',
-        },
-        {
-          type:   'gallery',         // 多图展示
-          title:  '过程截图 / 效果图集',
-          paragraphs: [
-            '这里是多图展示模块，适合放设计稿、过程截图、对比图等。images 数组里放几张就显示几张。',
-          ],
-          bullets: [],
-          images: [
-            { src: '/images/placeholder-detail.svg', alt: '过程图一', caption: '步骤一' },
-            { src: '/images/placeholder-detail.svg', alt: '过程图二', caption: '步骤二' },
-            { src: '/images/placeholder-detail.svg', alt: '过程图三', caption: '步骤三' },
-          ],
-          tags:  [],
-          note:  '← 可替换为真实截图',
-        },
-      ],
-      highlights: ['亮点一。', '亮点二。'],
-      conclusion: '总结与收获占位文案。',
-    },
-  },
-
-  // ── 占位 03：fullImage + textOnly，展示大图和纯文字 ─────────
-  {
-    id: 'placeholder-03',
-    title: '作品占位 03',
-    summary: '这里是作品一句话概述，后续替换为真实内容。',
-    tags: ['标签M', '标签N'],
-    cover: '/images/placeholder-cover.svg',
-    date: '2025-09',
-    detail: {
-      background: '这里填写项目背景介绍。',
-      approach:   '这里填写创作或实现思路。',
-      contentBlocks: [
-        {
-          type:   'fullImage',       // 单张大图，全宽展示
-          title:  '最终界面 / 整体效果',
-          paragraphs: [
-            '这里可以写一句对整体效果的简短说明，或者留空。',
-          ],
-          bullets: [],
-          images: [
-            { src: '/images/placeholder-detail.svg', alt: '整体界面大图', caption: '最终效果展示' },
-          ],
-          tags:  [],
-          note:  '',
-        },
-        {
-          type:   'textOnly',        // 纯文字，不放图片
-          title:  '方法与思考',
-          paragraphs: [
-            '这里写纯文字内容，不需要配图时使用 textOnly 类型。',
-            '可以写多段，每段是数组里的一个字符串。',
-            '适合写分析过程、复盘内容、方法论说明等不需要截图的部分。',
-          ],
-          bullets: [],
-          images: [],
-          tags:  [],
-          note:  '// 纯文字模块，无需图片',
-        },
-      ],
-      highlights: ['亮点一。'],
-      conclusion: '总结与收获占位文案。',
-    },
-  },
-
   // ── AI Agent 项目标准化交付工作流 ────────────────────────────
   {
     id: 'ai-agent-workflow',
@@ -411,6 +320,50 @@ const projects = [
       ],
       conclusion:
         '这套流程已经在实际项目中跑通，从需求拆解到 Git 留痕，每个环节都有对应的文档和输出。目前的版本适合个人项目场景，覆盖了从业务想法到阶段交付的完整链路。后续希望在团队协作或更复杂的需求场景下进一步验证和调整。',
+    },
+  },
+
+  // ── 占位 03：fullImage + textOnly，展示大图和纯文字 ─────────
+  {
+    id: 'placeholder-03',
+    title: '作品占位 03',
+    summary: '这里是作品一句话概述，后续替换为真实内容。',
+    tags: ['标签M', '标签N'],
+    cover: '/images/placeholder-cover.svg',
+    date: '2025-09',
+    detail: {
+      background: '这里填写项目背景介绍。',
+      approach:   '这里填写创作或实现思路。',
+      contentBlocks: [
+        {
+          type:   'fullImage',       // 单张大图，全宽展示
+          title:  '最终界面 / 整体效果',
+          paragraphs: [
+            '这里可以写一句对整体效果的简短说明，或者留空。',
+          ],
+          bullets: [],
+          images: [
+            { src: '/images/placeholder-detail.svg', alt: '整体界面大图', caption: '最终效果展示' },
+          ],
+          tags:  [],
+          note:  '',
+        },
+        {
+          type:   'textOnly',        // 纯文字，不放图片
+          title:  '方法与思考',
+          paragraphs: [
+            '这里写纯文字内容，不需要配图时使用 textOnly 类型。',
+            '可以写多段，每段是数组里的一个字符串。',
+            '适合写分析过程、复盘内容、方法论说明等不需要截图的部分。',
+          ],
+          bullets: [],
+          images: [],
+          tags:  [],
+          note:  '// 纯文字模块，无需图片',
+        },
+      ],
+      highlights: ['亮点一。'],
+      conclusion: '总结与收获占位文案。',
     },
   },
 
