@@ -338,7 +338,7 @@ const projects = [
     title: 'AI 驱动的 SQL/Python 小白业务数据训练台',
     summary: '面向采销、商品运营、品类运营新人的 SQL/Python 业务数据训练与经营诊断工具，模拟从业务问题、字段口径、数据分析到经营判断和动作建议的完整流程。',
     tags: ['AI 编程', 'SQL/Python', '采销分析', '商品运营', '经营诊断', 'Streamlit', 'DuckDB', '数据分析'],
-    cover: '/images/sql-python-trainer-cover.svg',
+    cover: '/images/sql-python-trainer-business-diagnosis.png',
     date: '2026',
     detail: {
       background:
