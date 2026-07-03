@@ -4,7 +4,25 @@
 
 ---
 
-## 今日完成内容（2026-07-03）
+## 今日完成内容（2026-07-03）—— 截图增强
+
+- 为《课程顾问销售工作台》补充真实界面截图，替换 placeholder 封面与详情图
+- 截图来自 yunmei_sales_champion_workbench 本地 Streamlit 原型（port 8512）
+- 截图方式：playwright headless，DOM 中内部项目名已替换为"课程顾问"，客户数据全部为编码 ID（A001 等）
+- 未修改源项目代码，未修改 ProjectDetail.jsx 及其他页面结构
+
+| 文件名 | 对应功能 |
+|--------|---------|
+| course-sales-workbench-cover.png | 首页看板（线索统计 + 异议统计 + 待跟进列表）|
+| course-sales-workbench-parent-profile.png | 家长画像分析（价格敏感型，含沟通策略）|
+| course-sales-workbench-recommend-explain.png | 分析详情（含家长状态、突破策略、Top3 推荐解释）|
+| course-sales-workbench-corpus-library.png | 语料库管理（312 条语料列表）|
+| course-sales-workbench-followup.png | 线索管理列表（意向等级 + 跟进信号）|
+
+- `npm run build` 通过
+- 当前四个作品均有真实截图
+
+---
 
 - 新增第四个真实作品《课程顾问销售工作台》，替换 placeholder-04
 - 项目 id：`course-consultant-sales-workbench`
