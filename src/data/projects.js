@@ -348,7 +348,7 @@ const projects = [
       contentBlocks: [
         // 模块 1：项目总览
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '从业务问题到经营诊断的 SQL/Python 训练台',
           paragraphs: [
             '这是一个用 Streamlit 搭建的本地原型，面向采销、商品运营、品类运营新人，支持从上传业务 Excel、确认字段口径，到执行 SQL/Python 数据分析、生成经营诊断报告的完整流程。',
@@ -356,7 +356,9 @@ const projects = [
             '整个项目的重点不是界面有多好看，而是：把"采销数据分析"从一句话拆成可以执行的字段、任务和诊断规则，再用代码实现出来。',
           ],
           bullets: [],
-          images: [],
+          images: [
+            { src: '/images/sql-python-trainer-fixed-task.png', alt: 'V0.2 固定任务卡分析结果截图', caption: '真实运行截图：固定任务卡 SKU 销售排行分析，显示 pandas 分析结果表格' },
+          ],
           tags:  ['项目概览', 'Streamlit', 'DuckDB', '业务训练工具'],
           note:  '',
         },
@@ -382,7 +384,7 @@ const projects = [
         },
         // 模块 3：数据上传与字段映射
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '让非标准业务表格进入分析链路',
           paragraphs: [
             '采销实际工作中拿到的数据往往是非标准的：字段名五花八门，"销售额"可能叫 sales_amt、也可能叫 gmv，日期字段可能叫 order_date、也可能叫 日期。V0.4/V0.5 解决的就是这个问题。',
@@ -395,13 +397,15 @@ const projects = [
             '冲突检测：映射到同一标准字段的多个原始字段会触发报错阻断',
             '确认后的字段映射会持久化到本次 session，供后续分析任务复用',
           ],
-          images: [],
+          images: [
+            { src: '/images/sql-python-trainer-upload-mapping.png', alt: 'CSV/XLSX 上传区域截图', caption: '真实运行截图：上传区域展开，展示文件上传入口和必需字段列表' },
+          ],
           tags:  ['字段映射', 'CSV/XLSX', '数据接入', '口径确认'],
           note:  '',
         },
         // 模块 4：固定任务卡与模块组合分析
         {
-          type:   'textOnly',
+          type:   'gallery',
           title:  '从固定问题到自由组合的分析训练',
           paragraphs: [
             'V0.2 的固定任务卡是三个内置的标准分析任务：SKU 销售排行、品牌销售占比、库存压力商品。每个任务都会同时展示 pandas 分析结果、Plotly 图表、对应的 DuckDB SQL 代码，以及用中文写的业务解释，目的是让用户看到"这行 SQL 对应的业务含义是什么"。',
@@ -413,13 +417,16 @@ const projects = [
             '白名单组合约束：限制维度 × 指标 × 聚合的合法组合，防止无效查询',
             'result_value 统一字段契约：让不同任务的输出格式保持一致',
           ],
-          images: [],
+          images: [
+            { src: '/images/sql-python-trainer-fixed-task.png', alt: 'V0.2 固定任务卡 SKU 销售排行', caption: 'V0.2 固定任务卡：销售额 TOP 10 SKU 分析，pandas 结果表格' },
+            { src: '/images/sql-python-trainer-combo.png', alt: 'V0.3 模块组合分析配置界面', caption: 'V0.3 模块组合：维度 × 指标 × 聚合方式 × Top N 自由组合' },
+          ],
           tags:  ['固定任务卡', '模块组合', 'pandas', 'DuckDB', 'SQL'],
           note:  '',
         },
         // 模块 5：业务规则诊断
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '从数据结果到采销动作建议',
           paragraphs: [
             'V0.6 是这个项目里业务含量最高的一个版本。在得到 SKU 销售排行和库存数据之后，下一步是判断每个 SKU 处于什么经营状态，对应什么采销动作。',
@@ -432,13 +439,15 @@ const projects = [
             '诊断报告：每次输出 Markdown 格式，包含分类结果、阈值说明和动作建议',
             '高优先级 SKU 列表：单独提取需要立即关注的商品，辅助采购决策',
           ],
-          images: [],
+          images: [
+            { src: '/images/sql-python-trainer-business-diagnosis.png', alt: 'V0.6 业务规则诊断截图', caption: '真实运行截图：V0.6 业务规则诊断，展示六类经营角色标签和 SKU 分类结果' },
+          ],
           tags:  ['业务规则诊断', '经营角色', '动作建议', '采销决策'],
           note:  '// 六类角色分类是这个项目里反复调整最多的部分，来自对采销实际工作场景的理解',
         },
         // 模块 6：半自由输入入口
         {
-          type:   'textOnly',
+          type:   'imageText',
           title:  '不用接 AI，也能做可控的半自由分析入口',
           paragraphs: [
             'V0.7 加了一个半自由输入入口：用户可以用自然语言输入问题，系统识别意图后路由到对应的分析任务。这个功能特意不接 OpenAI 或任何外部 AI API，而是用关键词白名单匹配。',
@@ -451,7 +460,9 @@ const projects = [
             '安全性验证：pytest 路由测试 15 项，确认无 eval/exec 直接 SQL 注入风险',
             '未识别友好处理：没有命中的输入返回提示而不是报错，避免界面崩溃',
           ],
-          images: [],
+          images: [
+            { src: '/images/sql-python-trainer-semi-free-query.png', alt: 'V0.7 半自由分析入口截图', caption: '真实运行截图：V0.7 半自由输入入口，展示输入框、白名单匹配和未识别友好提示' },
+          ],
           tags:  ['半自由输入', '白名单路由', '稳定可控', '无 API 依赖'],
           note:  '',
         },
