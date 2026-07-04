@@ -4,6 +4,39 @@
 
 ---
 
+## 今日完成内容（2026-07-04）—— Cloudflare Pages 备用部署
+
+- Cloudflare Pages 部署成功，地址：https://portfolio-site-dfa.pages.dev
+- Production branch：main，commit：254e07a，自动部署已启用
+- 7 个路由全部 200，无 Content-Disposition，无跳转异常：
+  - `/`、`/portfolio`、`/contact`
+  - `/projects/category-analysis-dashboard`
+  - `/projects/ai-agent-workflow`
+  - `/projects/sql-python-biz-trainer`
+  - `/projects/course-consultant-sales-workbench`
+- SPA 路由正常：刷新详情页不 404，Cloudflare Pages 内置 SPA 支持
+- 23 张图片全部 200，含《课程顾问销售工作台》5 张截图
+- CF-RAY 显示由 PDX（Portland）边缘节点响应，全球访问正常
+
+**Cloudflare Pages 使用限制：**
+- `pages.dev` 默认域名在中国大陆被 GFW 封锁，无法作为国内主链接
+- 适合投递外企 / 海外岗位时使用，或作为海外访问备用
+- 当前定位：**海外 / 境外备用访问链接**
+
+**腾讯云 COS 默认域名（cos-website）限制记录：**
+- 存储桶：`portfolio-site-1450259285`，地域：`ap-beijing`
+- COS 错误文档机制（无论响应码是 404 还是 200）会强制附加 `Content-Disposition: attachment` + `x-cos-force-download: true`，导致浏览器触发下载而非渲染
+- 将「错误文档响应码」改为 200 后，该头部扩散到所有路由（含根路径 `/`），引发全站下载
+- **结论：COS 默认域名（`*.cos-website.ap-beijing.myqcloud.com`）不适合直接作为 SPA 最终访问地址**
+- 长期稳定方案：COS + 自定义域名 + 腾讯云 CDN（可在 CDN 层删除 `Content-Disposition` 头）+ ICP 备案
+
+**当前部署策略：**
+- 国内主链接（推荐 HR）：Vercel（https://portfolio-site-lcplnqsvg-zhao-ze-yang.vercel.app）
+- 海外备用链接：Cloudflare Pages（https://portfolio-site-dfa.pages.dev）
+- 国内长期稳定方案：北京 COS + 自定义域名 + CDN + ICP 备案（待后续）
+
+---
+
 ## 今日完成内容（2026-07-04）—— Vercel 部署上线
 
 - 作品集已成功部署到 Vercel
