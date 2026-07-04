@@ -2,6 +2,10 @@
 
 个人作品集网站，技术栈：React + Vite + Tailwind CSS。
 
+- **在线访问：** https://portfolio-site-lcplnqsvg-zhao-ze-yang.vercel.app
+- **GitHub 仓库：** https://github.com/zhaozeyang247158/portfolio-site
+- **部署平台：** Vercel（每次 push main 自动重部署）
+
 ---
 
 ## 本地启动

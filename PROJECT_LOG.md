@@ -4,6 +4,23 @@
 
 ---
 
+## 今日完成内容（2026-07-04）—— Vercel 部署上线
+
+- 作品集已成功部署到 Vercel
+- 部署地址：https://portfolio-site-lcplnqsvg-zhao-ze-yang.vercel.app
+- GitHub 仓库：https://github.com/zhaozeyang247158/portfolio-site
+- 7 个路由全部 200（/、/portfolio、4 个项目详情页、/contact）
+- 《课程顾问销售工作台》5 张截图全部加载
+- resume.pdf 下载入口已临时禁用，无 404 风险
+- 当前可用于简历 / 面试展示
+
+**后续可选优化：**
+- [ ] 绑定自定义域名
+- [ ] 补充 `public/resume.pdf`，恢复 Contact 页下载按钮
+- [ ] 为 GitHub 仓库补充 About 描述和网站链接
+
+---
+
 ## 今日完成内容（2026-07-04）—— 部署前 P1 修复
 
 - 部署前检查发现 `public/resume.pdf` 暂未提供，Contact 页"下载简历"按钮部署后会 404
