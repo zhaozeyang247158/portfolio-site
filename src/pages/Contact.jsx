@@ -141,19 +141,13 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* ── 简历入口 ── */}
+      {/* ── 简历入口（暂时禁用，resume.pdf 补齐后恢复） ── */}
       <div className="mb-12 flex items-center gap-4">
-        <a
-          href={profile.resume}
-          download
-          className="btn-primary flex items-center gap-3"
-        >
+        <div className="flex items-center gap-3 px-5 py-3 rounded border border-dashed border-ink-faint text-ink-faint cursor-not-allowed select-none"
+          style={{ opacity: 0.5 }}>
           <IconDocument />
-          <span>查看 / 下载简历</span>
-        </a>
-        <span className="doodle-note opacity-50 hidden md:inline">
-          ← PDF 格式
-        </span>
+          <span className="text-sm tracking-wide">简历 PDF 整理中，如需简历请通过邮箱联系</span>
+        </div>
       </div>
 
       {/* ── 辅助说明 ── */}
